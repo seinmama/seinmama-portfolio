@@ -1,0 +1,10 @@
+<div class="ticker" [style.--ticker-speed.s]="speedSeconds()">
+  <div class="ticker__track">
+    @for (item of items(); track item) {
+      <span class="ticker__item">{{ item }}</span>
+    }
+    @for (item of items(); track item) {
+      <span class="ticker__item" aria-hidden="true">{{ item }}</span>
+    }
+  </div>
+</div>

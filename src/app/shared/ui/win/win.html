@@ -1,0 +1,11 @@
+<div class="win">
+  <div class="win__titlebar">
+    <span class="win__title">{{ title() }}</span>
+    @if (closable()) {
+      <button type="button" class="win__close" aria-label="Close">×</button>
+    }
+  </div>
+  <div class="win__body">
+    <ng-content />
+  </div>
+</div>

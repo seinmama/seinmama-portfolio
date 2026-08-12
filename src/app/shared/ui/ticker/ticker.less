@@ -1,0 +1,25 @@
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--surface);
+  color: var(--accent);
+  border-block: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.ticker__track {
+  display: inline-flex;
+  animation: ticker-scroll var(--ticker-speed) linear infinite;
+}
+
+.ticker__item {
+  padding-inline: 1.5rem;
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

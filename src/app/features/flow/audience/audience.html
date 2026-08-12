@@ -1,0 +1,13 @@
+<section class="audience">
+  <h2 class="audience__title">who's asking?</h2>
+  <ul class="audience__list">
+    @for (item of audiences; track item.id) {
+      <li>
+        <button type="button" class="audience__option" (click)="choose(item.id)">
+          <span class="audience__name">{{ item.name }}</span>
+          <span class="audience__description">{{ item.description }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+</section>

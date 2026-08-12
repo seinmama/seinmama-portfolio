@@ -1,0 +1,12 @@
+<section class="work">
+  <h1>Work</h1>
+  <ul class="work__list">
+    @for (item of items; track item.slug) {
+      <li class="work__item">
+        <h2>{{ item.title }}</h2>
+        <p class="work__meta">{{ item.role }} · {{ item.year }}</p>
+        <p>{{ item.summary }}</p>
+      </li>
+    }
+  </ul>
+</section>

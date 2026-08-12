@@ -1,0 +1,7 @@
+@if (href(); as href) {
+  <a class="badge88" [href]="href" target="_blank" rel="noopener">
+    <img [src]="src()" [alt]="alt()" width="88" height="31" loading="lazy" />
+  </a>
+} @else {
+  <img class="badge88" [src]="src()" [alt]="alt()" width="88" height="31" loading="lazy" />
+}

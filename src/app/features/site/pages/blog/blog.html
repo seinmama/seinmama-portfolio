@@ -1,0 +1,12 @@
+<section class="blog">
+  <h1>Blog</h1>
+  <ul class="blog__list">
+    @for (post of posts; track post.slug) {
+      <li class="blog__item">
+        <h2>{{ post.title }}</h2>
+        <p class="blog__meta">{{ post.date }}</p>
+        <p>{{ post.excerpt }}</p>
+      </li>
+    }
+  </ul>
+</section>

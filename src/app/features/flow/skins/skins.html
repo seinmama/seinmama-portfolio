@@ -1,0 +1,14 @@
+<section class="skins">
+  <h2 class="skins__title">pick a skin</h2>
+  <ul class="skins__list">
+    @for (item of skins; track item.id) {
+      <li>
+        <button type="button" class="skins__option" [style.--swatch]="item.swatch" (click)="choose(item.id)">
+          <span class="skins__swatch"></span>
+          <span class="skins__name">{{ item.name }}</span>
+          <span class="skins__tagline">{{ item.tagline }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+</section>

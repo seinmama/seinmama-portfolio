@@ -1,0 +1,41 @@
+.image-slot {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: 2px;
+}
+
+.image-slot__placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--surface) 0%,
+    color-mix(in srgb, var(--accent) 15%, var(--surface)) 50%,
+    var(--surface) 100%
+  );
+  background-size: 200% 100%;
+  animation: image-slot-shimmer 1.4s ease-in-out infinite;
+}
+
+.image-slot img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.image-slot--loaded img {
+  opacity: 1;
+}
+
+@keyframes image-slot-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

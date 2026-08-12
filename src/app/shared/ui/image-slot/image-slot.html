@@ -1,0 +1,6 @@
+<div class="image-slot" [style.aspect-ratio]="ratio()" [class.image-slot--loaded]="loaded()">
+  @if (!loaded()) {
+    <div class="image-slot__placeholder"></div>
+  }
+  <img [src]="src()" [alt]="alt()" loading="lazy" (load)="onLoad()" />
+</div>

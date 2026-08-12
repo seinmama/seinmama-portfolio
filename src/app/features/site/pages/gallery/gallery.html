@@ -1,0 +1,11 @@
+<section class="gallery">
+  <h1>Gallery</h1>
+  <div class="gallery__grid">
+    @for (item of items; track item.id) {
+      <figure class="gallery__figure">
+        <ui-image-slot [src]="item.src" [alt]="item.alt" />
+        <figcaption>{{ item.title }}</figcaption>
+      </figure>
+    }
+  </div>
+</section>

@@ -1,0 +1,50 @@
+.audience {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.audience__title {
+  color: var(--accent);
+  margin: 0;
+}
+
+.audience__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.audience__option {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 6px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.audience__option:hover {
+  border-color: var(--accent);
+}
+
+.audience__name {
+  font-weight: 600;
+}
+
+.audience__description {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}

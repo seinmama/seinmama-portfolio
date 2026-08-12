@@ -1,0 +1,30 @@
+@import '../../../../styles/mixins.less';
+@import '../../../../styles/variables.less';
+
+.win {
+  .win-chrome();
+  overflow: hidden;
+}
+
+.win__titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: @space-1 @space-2;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.win__close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  color: inherit;
+}
+
+.win__body {
+  padding: @space-3;
+}

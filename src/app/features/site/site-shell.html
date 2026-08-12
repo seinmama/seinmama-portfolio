@@ -1,0 +1,16 @@
+<div class="site">
+  <nav class="site__sidebar">
+    <ul class="site__nav">
+      @for (link of links; track link.path) {
+        <li>
+          <a [routerLink]="link.path" routerLinkActive="site__link--active" class="site__link">
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+  <main class="site__content">
+    <router-outlet />
+  </main>
+</div>

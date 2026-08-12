@@ -1,0 +1,48 @@
+.guestbook h1 {
+  color: var(--accent);
+  margin-top: 0;
+}
+
+.guestbook__form {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 420px;
+  margin-bottom: 2rem;
+}
+
+.guestbook__input {
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+.guestbook__submit {
+  justify-self: start;
+  padding: 0.5rem 1.25rem;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.guestbook__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.guestbook__entry {
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-radius: 4px;
+}
+
+.guestbook__empty {
+  color: var(--text-muted);
+}
