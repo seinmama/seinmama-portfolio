@@ -1,5 +1,14 @@
-<section class="intro">
-  <h1 class="intro__title">zune.</h1>
-  <p class="intro__subtitle">a portfolio, played back.</p>
-  <a class="intro__cta" routerLink="/flow/audience">press play</a>
+<section class="intro" (click)="onIntroClick()">
+  <button type="button" class="intro__skip" (click)="continue(); $event.stopPropagation()">skip »</button>
+
+  <div class="intro__terminal">
+    <pre class="intro__term">{{ introText() }}</pre>
+    <div class="intro__line">
+      <span class="intro__cursor">█</span>
+    </div>
+
+    @if (ready()) {
+      <button type="button" class="intro__enter" (click)="continue(); $event.stopPropagation()">[ PRESS ENTER ]</button>
+    }
+  </div>
 </section>
