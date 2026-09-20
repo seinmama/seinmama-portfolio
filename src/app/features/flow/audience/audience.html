@@ -1,13 +1,28 @@
 <section class="audience">
-  <h2 class="audience__title">who's asking?</h2>
-  <ul class="audience__list">
-    @for (item of audiences; track item.id) {
-      <li>
-        <button type="button" class="audience__option" (click)="choose(item.id)">
-          <span class="audience__name">{{ item.name }}</span>
-          <span class="audience__description">{{ item.description }}</span>
-        </button>
-      </li>
-    }
-  </ul>
+  <div class="audience-card">
+    <div class="audience-titlebar">
+      <span>◆ who's visiting? ◆</span>
+      <span class="audience-controls">
+        <span class="audience-control"></span>
+        <span class="audience-control"></span>
+      </span>
+    </div>
+
+    <div class="audience-body">
+      <h2 class="audience-step">step 1 · who are you?</h2>
+      <p class="audience-hint">the site rearranges itself &amp; offers different skins based on your pick</p>
+
+      <div class="audience-grid">
+        @for (item of audiences; track item.id) {
+          <button type="button" class="audience-option" (click)="choose(item.id)">
+            <span class="audience-icon">{{ item.icon }}</span>
+            <span class="audience-text">
+              <span class="audience-name">{{ item.name }}</span>
+              <span class="audience-description">{{ item.description }}</span>
+            </span>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
 </section>

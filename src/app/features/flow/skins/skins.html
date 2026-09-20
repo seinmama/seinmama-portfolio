@@ -1,14 +1,42 @@
-<section class="skins">
-  <h2 class="skins__title">pick a skin</h2>
-  <ul class="skins__list">
-    @for (item of skins; track item.id) {
-      <li>
-        <button type="button" class="skins__option" [style.--swatch]="item.swatch" (click)="choose(item.id)">
-          <span class="skins__swatch"></span>
-          <span class="skins__name">{{ item.name }}</span>
-          <span class="skins__tagline">{{ item.tagline }}</span>
-        </button>
-      </li>
-    }
-  </ul>
+<section class="skin">
+  <div class="skin-card-wrap">
+    <div class="skin-titlebar">
+      <span>◆ pick your skin ◆</span>
+      <span class="skin-controls">
+        <span class="skin-control"></span>
+        <span class="skin-control"></span>
+      </span>
+    </div>
+
+    <div class="skin-body">
+      <h2 class="skin-step">step 3 · pick a look</h2>
+      @if (audience(); as person) {
+        <p class="skin-hint">
+          🖼️ {{ person.name }} view · {{ skins().length }} skins picked for you — click to preview
+        </p>
+      } @else {
+        <p class="skin-hint">🖼️ pick a look — click to preview</p>
+      }
+
+      <div class="skin-grid">
+        @for (item of skins(); track item.id) {
+          <button
+            type="button"
+            class="skin-card"
+            [class.is-active]="activeId() === item.id"
+            [style.--gradient]="item.gradient"
+            (click)="preview(item.id)"
+          >
+            <span class="skin-icon">{{ item.icon }}</span>
+            <span class="skin-name">{{ item.name }}</span>
+          </button>
+        }
+      </div>
+
+      <div class="skin-actions">
+        <button type="button" class="skin-back" (click)="back()">« back</button>
+        <button type="button" class="skin-enter" (click)="enter()">▶ enter my homepage</button>
+      </div>
+    </div>
+  </div>
 </section>

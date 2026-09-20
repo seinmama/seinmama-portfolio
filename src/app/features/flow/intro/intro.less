@@ -1,29 +1,82 @@
-.intro {
-  height: 100dvh;
-  display: grid;
-  place-items: center;
-  place-content: center;
-  gap: 1rem;
-  text-align: center;
+@import '../../../../styles/variables.less';
+@import '../../../../styles/mixins.less';
+
+:host {
+  --accent: #39ff6a;
+  --bg: #020a02;
 }
 
-.intro__title {
-  font-size: 3rem;
+.intro {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg);
+  background-image: linear-gradient(rgba(57, 255, 106, 0.05) 2px, transparent 2px);
+  background-size: 100% 4px;
+  padding: 7vw;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-skip {
+  position: fixed;
+  top: 16px;
+  right: 18px;
+  font-family: @font-terminal;
+  font-size: 19px;
+  color: var(--accent);
+  background: none;
+  border: 1px solid var(--accent);
+  padding: 4px 12px;
+  cursor: pointer;
+  z-index: 10;
+  .pressable();
+}
+
+.intro-terminal {
+  width: min(640px, 100%);
+}
+
+.intro-term {
+  font-family: @font-terminal;
+  font-size: clamp(15px, 2.5vw, 24px);
+  color: var(--accent);
+  white-space: pre-wrap;
+  line-height: 1.4;
+  text-shadow: 0 0 7px color-mix(in srgb, var(--accent) 55%, transparent);
   margin: 0;
+}
+
+.intro-line {
+  display: flex;
+  align-items: center;
+  font-family: @font-terminal;
+  font-size: clamp(15px, 2.5vw, 24px);
   color: var(--accent);
 }
 
-.intro__subtitle {
-  margin: 0;
-  color: var(--text-muted);
+.intro-cursor {
+  animation: intro-blink 1s step-end infinite;
 }
 
-.intro__cta {
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
+.intro-enter {
+  margin-top: 24px;
+  font-family: @font-pixel;
+  font-size: 12px;
+  color: #000;
   background: var(--accent);
-  color: var(--accent-contrast);
-  text-decoration: none;
-  font-weight: 600;
+  border: none;
+  padding: 14px 20px;
+  cursor: pointer;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 70%, transparent);
+  animation: intro-blink 1s step-end infinite;
+  .pressable();
+}
+
+@keyframes intro-blink {
+  50% {
+    opacity: 0;
+  }
 }
