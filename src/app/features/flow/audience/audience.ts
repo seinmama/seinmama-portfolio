@@ -17,6 +17,10 @@ export class Audience {
 
   protected choose(id: AudienceId): void {
     this.theme.setAudience(id);
+    if (id === 'guru') {
+      this.router.navigate(['/flow/terminal']);
+      return;
+    }
     this.router.navigate(['/flow/skins']);
   }
 }

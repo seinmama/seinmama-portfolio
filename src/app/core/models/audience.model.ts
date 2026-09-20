@@ -1,7 +1,8 @@
-export type AudienceId = 'recruiter' | 'developer' | 'designer' | 'curious';
+export type AudienceId = 'recruiter' | 'friend' | 'developer' | 'curious' | 'guru';
 
 export interface Audience {
   id: AudienceId;
   name: string;
   description: string;
+  icon: string;
 }
