@@ -20,6 +20,18 @@
   line-height: 1.6;
 }
 
+.pressable() {
+  transition: transform 0.1s ease;
+
+  &:hover {
+    transform: translate(-1px, -1px);
+  }
+
+  &:active {
+    transform: translate(0, 0);
+  }
+}
+
 .visually-hidden() {
   position: absolute;
   width: 1px;
