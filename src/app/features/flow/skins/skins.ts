@@ -39,7 +39,7 @@ export class Skins {
   }
 
   protected back(): void {
-    this.router.navigate(['/flow/audience']);
+    this.router.navigate(['/flow/style']);
   }
 
   protected enter(): void {

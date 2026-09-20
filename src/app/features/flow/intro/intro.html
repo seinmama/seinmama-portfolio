@@ -1,14 +1,14 @@
 <section class="intro" (click)="onIntroClick()">
-  <button type="button" class="intro__skip" (click)="continue(); $event.stopPropagation()">skip »</button>
+  <button type="button" class="intro-skip" (click)="continue(); $event.stopPropagation()">skip »</button>
 
-  <div class="intro__terminal">
-    <pre class="intro__term">{{ introText() }}</pre>
-    <div class="intro__line">
-      <span class="intro__cursor">█</span>
+  <div class="intro-terminal">
+    <pre class="intro-term">{{ introText() }}</pre>
+    <div class="intro-line">
+      <span class="intro-cursor">█</span>
     </div>
 
     @if (ready()) {
-      <button type="button" class="intro__enter" (click)="continue(); $event.stopPropagation()">[ PRESS ENTER ]</button>
+      <button type="button" class="intro-enter" (click)="continue(); $event.stopPropagation()">[ PRESS ENTER ]</button>
     }
   </div>
 </section>

@@ -1,24 +1,24 @@
 <section class="audience">
-  <div class="audience__card">
-    <div class="audience__titlebar">
+  <div class="audience-card">
+    <div class="audience-titlebar">
       <span>◆ who's visiting? ◆</span>
-      <span class="audience__controls">
-        <span class="audience__control"></span>
-        <span class="audience__control"></span>
+      <span class="audience-controls">
+        <span class="audience-control"></span>
+        <span class="audience-control"></span>
       </span>
     </div>
 
-    <div class="audience__body">
-      <h2 class="audience__step">step 1 · who are you?</h2>
-      <p class="audience__hint">the site rearranges itself &amp; offers different skins based on your pick</p>
+    <div class="audience-body">
+      <h2 class="audience-step">step 1 · who are you?</h2>
+      <p class="audience-hint">the site rearranges itself &amp; offers different skins based on your pick</p>
 
-      <div class="audience__grid">
+      <div class="audience-grid">
         @for (item of audiences; track item.id) {
-          <button type="button" class="audience__option" (click)="choose(item.id)">
-            <span class="audience__icon">{{ item.icon }}</span>
-            <span class="audience__text">
-              <span class="audience__name">{{ item.name }}</span>
-              <span class="audience__description">{{ item.description }}</span>
+          <button type="button" class="audience-option" (click)="choose(item.id)">
+            <span class="audience-icon">{{ item.icon }}</span>
+            <span class="audience-text">
+              <span class="audience-name">{{ item.name }}</span>
+              <span class="audience-description">{{ item.description }}</span>
             </span>
           </button>
         }

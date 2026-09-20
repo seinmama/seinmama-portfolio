@@ -15,6 +15,10 @@ export const flowRoutes: Routes = [
     loadComponent: () => import('./audience/audience').then((m) => m.Audience),
   },
   {
+    path: 'style',
+    loadComponent: () => import('./style/style').then((m) => m.Style),
+  },
+  {
     path: 'skins',
     loadComponent: () => import('./skins/skins').then((m) => m.Skins),
   },

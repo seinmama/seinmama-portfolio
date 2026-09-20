@@ -21,6 +21,6 @@ export class Audience {
       this.router.navigate(['/flow/terminal']);
       return;
     }
-    this.router.navigate(['/flow/skins']);
+    this.router.navigate(['/flow/style']);
   }
 }

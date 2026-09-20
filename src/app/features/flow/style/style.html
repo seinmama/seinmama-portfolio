@@ -1,0 +1,47 @@
+<section class="style">
+  <div class="style-card-wrap">
+    <div class="style-titlebar">
+      <span>◆ pick a theme ◆</span>
+      <span class="style-controls">
+        <span class="style-control"></span>
+        <span class="style-control"></span>
+      </span>
+    </div>
+
+    <div class="style-body">
+      <h2 class="style-step">step 2 · pick a theme</h2>
+      @if (audience(); as person) {
+        <p class="style-hint">
+          🖼️ {{ person.name }} view · the theme sets the whole feel — you'll pick a skin inside it next.
+        </p>
+      } @else {
+        <p class="style-hint">🖼️ the theme sets the whole feel — you'll pick a skin inside it next.</p>
+      }
+
+      <div class="style-grid">
+        @for (item of styles; track item.id) {
+          <button type="button" class="style-card" (click)="choose(item.id)">
+            <span class="style-preview" [class.style-preview--retro]="item.id === 'retro'">
+              @if (item.id === 'modern') {
+                <span class="style-bar style-bar--dark"></span>
+                <span class="style-bar style-bar--light"></span>
+              } @else {
+                <span class="style-bar style-bar--navy"></span>
+                <span class="style-bar style-bar--magenta"></span>
+                <span class="style-bar style-bar--pink"></span>
+              }
+            </span>
+            <span class="style-text">
+              <span class="style-name">{{ item.name }}</span>
+              <span class="style-description">{{ item.description }}</span>
+            </span>
+          </button>
+        }
+      </div>
+
+      <div class="style-actions">
+        <button type="button" class="style-back" (click)="back()">« back</button>
+      </div>
+    </div>
+  </div>
+</section>

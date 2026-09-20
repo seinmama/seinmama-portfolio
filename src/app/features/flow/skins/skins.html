@@ -1,41 +1,41 @@
-<section class="skins">
-  <div class="skins__card-wrap">
-    <div class="skins__titlebar">
+<section class="skin">
+  <div class="skin-card-wrap">
+    <div class="skin-titlebar">
       <span>◆ pick your skin ◆</span>
-      <span class="skins__controls">
-        <span class="skins__control"></span>
-        <span class="skins__control"></span>
+      <span class="skin-controls">
+        <span class="skin-control"></span>
+        <span class="skin-control"></span>
       </span>
     </div>
 
-    <div class="skins__body">
-      <h2 class="skins__step">step 2 · pick a look</h2>
+    <div class="skin-body">
+      <h2 class="skin-step">step 3 · pick a look</h2>
       @if (audience(); as person) {
-        <p class="skins__hint">
-          {{ person.icon }} {{ person.name }} view · {{ skins().length }} skins picked for you — click to preview
+        <p class="skin-hint">
+          🖼️ {{ person.name }} view · {{ skins().length }} skins picked for you — click to preview
         </p>
       } @else {
-        <p class="skins__hint">✨ pick a look — click to preview</p>
+        <p class="skin-hint">🖼️ pick a look — click to preview</p>
       }
 
-      <div class="skins__grid">
+      <div class="skin-grid">
         @for (item of skins(); track item.id) {
           <button
             type="button"
-            class="skins__card"
-            [class.skins__card--active]="activeId() === item.id"
+            class="skin-card"
+            [class.is-active]="activeId() === item.id"
             [style.--gradient]="item.gradient"
             (click)="preview(item.id)"
           >
-            <span class="skins__icon">{{ item.icon }}</span>
-            <span class="skins__name">{{ item.name }}</span>
+            <span class="skin-icon">{{ item.icon }}</span>
+            <span class="skin-name">{{ item.name }}</span>
           </button>
         }
       </div>
 
-      <div class="skins__actions">
-        <button type="button" class="skins__back" (click)="back()">« back</button>
-        <button type="button" class="skins__enter" (click)="enter()">▶ enter my homepage</button>
+      <div class="skin-actions">
+        <button type="button" class="skin-back" (click)="back()">« back</button>
+        <button type="button" class="skin-enter" (click)="enter()">▶ enter my homepage</button>
       </div>
     </div>
   </div>
