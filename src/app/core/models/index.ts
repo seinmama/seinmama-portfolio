@@ -5,3 +5,4 @@ export * from './blog.model';
 export * from './work.model';
 export * from './gallery.model';
 export * from './guestbook.model';
+export * from './link.model';

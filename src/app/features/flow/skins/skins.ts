@@ -47,6 +47,6 @@ export class Skins {
     if (id) {
       this.theme.setSkin(id);
     }
-    this.router.navigate(['/flow/terminal']);
+    this.router.navigate(['/flow/loading']);
   }
 }

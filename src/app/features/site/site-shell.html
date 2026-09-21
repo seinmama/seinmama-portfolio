@@ -1,16 +1,97 @@
 <div class="site">
-  <nav class="site__sidebar">
-    <ul class="site__nav">
-      @for (link of links; track link.path) {
-        <li>
-          <a [routerLink]="link.path" routerLinkActive="site__link--active" class="site__link">
-            {{ link.label }}
-          </a>
-        </li>
+  <div class="site-shell">
+    <div class="site-topbar">
+      <div class="site-themebar" [class.site-themebar--retro]="isRetro()">
+        <span class="site-summary">{{ summaryLine() }}</span>
+        <button type="button" class="site-change" [class.site-change--retro]="isRetro()" (click)="changeSettings()">
+          🎨 change »
+        </button>
+      </div>
+
+      @if (isRetro()) {
+        <div class="site-webring">
+          <a href="javascript:void(0)">◄ prev</a>
+          <span>·</span>
+          <a href="javascript:void(0)">🎲 random</a>
+          <span>·</span>
+          <a href="javascript:void(0)">next ►</a>
+        </div>
       }
-    </ul>
-  </nav>
-  <main class="site__content">
-    <router-outlet />
-  </main>
+    </div>
+
+    @if (isRetro()) {
+      <ui-ticker [items]="tickerItems" class="site-ticker" />
+    }
+
+    <header class="site-head">
+      <h1 class="site-title">Jordan's Corner of the Web</h1>
+      <p class="site-tag">
+        a lil homepage about front-end dev, coffee &amp; the world wide web ✨<br />
+        est. 1998 · handcoded with love &amp; Notepad
+      </p>
+    </header>
+
+    <nav class="site-nav">
+      @for (link of navLinks; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="site-nav-link--active"
+          class="site-nav-link"
+          [class.site-nav-link--retro]="isRetro()"
+        >{{ link.label }}</a>
+      }
+    </nav>
+
+    <div class="site-main">
+      <main class="site-content">
+        <router-outlet />
+      </main>
+
+      <aside class="site-aside">
+        <div class="site-card site-profile-photo" [class.site-card--retro]="isRetro()">
+          @if (isRetro()) {
+            <div class="site-card-header">me.jpg</div>
+          }
+          <div class="site-photo-frame">
+            <span class="site-photo-icon">🖼️</span>
+            <span class="site-photo-label">Drop a pic!</span>
+          </div>
+        </div>
+
+        <div class="site-card" [class.site-card--retro]="isRetro()">
+          <div class="site-card-header">★ about me ★</div>
+          <div class="site-card-body">
+            <p class="site-bio-line"><b>name »</b> jordan avery</p>
+            <p class="site-bio-line"><b>role »</b> front-end dev</p>
+            <p class="site-bio-line"><b>from »</b> lisbon, pt</p>
+            <p class="site-bio-line"><b>mood »</b> 😎 caffeinated</p>
+            <p class="site-bio-line"><b>♫ now »</b> boards of canada</p>
+          </div>
+        </div>
+
+        @if (isRetro()) {
+          <div class="site-card site-card--retro">
+            <div class="site-card-header">visitor count</div>
+            <div class="site-card-body site-counter">
+              @for (digit of visitorDigits; track $index) {
+                <span class="site-counter-digit">{{ digit }}</span>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="site-card" [class.site-card--retro]="isRetro()">
+          <div class="site-card-header">cool links</div>
+          <div class="site-card-body site-links">
+            @for (link of links; track link.id) {
+              <a class="site-link-row" [href]="link.href" target="_blank" rel="noopener">
+                <span>{{ link.icon }} {{ link.label }}</span>
+                <span class="site-link-meta">{{ link.meta }}</span>
+              </a>
+            }
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
 </div>

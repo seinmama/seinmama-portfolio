@@ -1,5 +1,6 @@
 // Runtime-swappable theme tokens (CSS custom properties), one block per skin.
 // ThemeService toggles the `.theme-*` class on the app root; see core/theme.service.ts.
+// Values mirror the reference prototype (Retro Homepage.dc.html) so skins stay visually accurate.
 
 :root,
 .theme-default {
@@ -9,58 +10,80 @@
   --surface: #1c1c22;
   --text: #f4f4f6;
   --text-muted: #9a9aa5;
+  --link: #f68b1e;
+  --font-body: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-label: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .theme-coffee {
-  --accent: #c17a3f;
-  --accent-contrast: #2a1a0f;
-  --bg: #241a14;
-  --surface: #3a2a1f;
-  --text: #f2e6d8;
-  --text-muted: #b79b85;
+  --accent: #a9714b;
+  --accent-contrast: #f6efe2;
+  --bg: #e5d8c3;
+  --surface: #f6efe2;
+  --text: #3b2a1e;
+  --text-muted: #6f5a45;
+  --link: #8a5a2b;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-label: 'Open Sans', sans-serif;
 }
 
 .theme-nature {
-  --accent: #5fa35a;
-  --accent-contrast: #0f1c0f;
-  --bg: #10180f;
-  --surface: #1c2a1a;
-  --text: #eaf2e6;
-  --text-muted: #9db593;
+  --accent: #c76a2b;
+  --accent-contrast: #fbfef4;
+  --bg: #e7efd8;
+  --surface: #fbfef4;
+  --text: #2f4a2c;
+  --text-muted: #5d7355;
+  --link: #3a7d44;
+  --font-body: 'Comic Neue', 'Comic Sans MS', cursive;
+  --font-label: 'Open Sans', sans-serif;
 }
 
 .theme-cyberpunk {
-  --accent: #ff2bd6;
-  --accent-contrast: #08020a;
-  --bg: #0a0512;
-  --surface: #170b26;
-  --text: #f2e9ff;
-  --text-muted: #a98fd0;
+  --accent: #ff00a0;
+  --accent-contrast: #0d0322;
+  --bg: #05010d;
+  --surface: #0d0322;
+  --text: #eaeaff;
+  --text-muted: #8a7fb5;
+  --link: #00eaff;
+  --font-body: 'VT323', 'Courier New', monospace;
+  --font-label: 'Press Start 2P', monospace;
 }
 
 .theme-newspaper {
-  --accent: #2b2b2b;
-  --accent-contrast: #f5f2ea;
-  --bg: #f5f2ea;
+  --accent: #141414;
+  --accent-contrast: #f4f1e8;
+  --bg: #f4f1e8;
   --surface: #ffffff;
-  --text: #1a1a1a;
-  --text-muted: #6b6b6b;
+  --text: #141414;
+  --text-muted: #565656;
+  --link: #0b0bb0;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-label: 'Open Sans', sans-serif;
+  --border:#e3ded1;
 }
 
 .theme-ocean {
-  --accent: #0e7ea8;
-  --accent-contrast: #04141a;
-  --bg: #061821;
-  --surface: #0c2733;
-  --text: #e6f5fb;
-  --text-muted: #7fa9b8;
+  --accent: #0f9bc2;
+  --accent-contrast: #f2fbfd;
+  --bg: #d5eef3;
+  --surface: #f2fbfd;
+  --text: #0b3d54;
+  --text-muted: #3d6d80;
+  --link: #0a7ea4;
+  --font-body: 'Comic Neue', 'Comic Sans MS', cursive;
+  --font-label: 'Open Sans', sans-serif;
 }
 
 .theme-midnight {
-  --accent: #7a5cff;
-  --accent-contrast: #0c0620;
-  --bg: #0b0620;
-  --surface: #16103a;
-  --text: #ece8ff;
-  --text-muted: #9a8fc4;
+  --accent: #a78bfa;
+  --accent-contrast: #141a3a;
+  --bg: #0b1026;
+  --surface: #141a3a;
+  --text: #dfe4ff;
+  --text-muted: #8b93c4;
+  --link: #9db4ff;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-label: 'Open Sans', sans-serif;
 }

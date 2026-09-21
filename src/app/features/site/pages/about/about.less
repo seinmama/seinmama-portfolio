@@ -1,8 +1,86 @@
-.about h1 {
-  color: var(--accent);
-  margin-top: 0;
+@import '../../../../../styles/mixins.less';
+
+.about-card {
+  .card();
 }
 
-.about p {
+.about-card--retro {
+  .card-retro();
+}
+
+.about-card--retro .about-card-header {
+  .card-header-retro();
+}
+
+.about-card-header {
+  .card-header();
+}
+
+.about-card-body {
+  .card-body();
+}
+
+.about-exp-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px dotted color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.about-exp-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about-exp-period {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
   color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+.about-exp-role {
+  margin: 0.2rem 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.about-exp-summary {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.about-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.about-chip {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  background: var(--bg);
+  letter-spacing: 0.02em;
+}
+
+.about-quote {
+  font-style: italic;
+  font-size: 1.05rem;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--text);
+}
+
+.about-quote-source {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  color: var(--accent);
+  text-align: center;
+  margin: 0.5rem 0 0;
+  letter-spacing: 0.03em;
 }

@@ -23,6 +23,10 @@ export const flowRoutes: Routes = [
     loadComponent: () => import('./skins/skins').then((m) => m.Skins),
   },
   {
+    path: 'loading',
+    loadComponent: () => import('./loading/loading').then((m) => m.Loading),
+  },
+  {
     path: 'terminal',
     loadComponent: () => import('./terminal/terminal').then((m) => m.Terminal),
   },

@@ -1,0 +1,92 @@
+@import '../../../../styles/variables.less';
+@import '../../../../styles/mixins.less';
+
+.loading {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  color: var(--text);
+  position: relative;
+}
+
+.loading-skip {
+  position: fixed;
+  top: 16px;
+  right: 18px;
+  font-family: @font-terminal;
+  font-size: 16px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--text);
+  padding: 4px 12px;
+  cursor: pointer;
+  .pressable();
+}
+
+.loading-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  padding: 2rem;
+}
+
+.loading-art {
+  width: 220px;
+  height: 200px;
+}
+
+.loading-wheel {
+  animation: loading-spin 1.1s linear infinite;
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-pages {
+  animation: loading-float 2.4s ease-in-out infinite;
+}
+
+@keyframes loading-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.loading-title {
+  font-family: @font-comic;
+  font-size: 1.5rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.loading-bar {
+  width: 320px;
+  max-width: 80vw;
+  height: 14px;
+  background: var(--surface);
+  border: 1px solid var(--text);
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.2s linear;
+}
+
+.loading-sub {
+  font-family: @font-terminal;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
