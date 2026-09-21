@@ -1,4 +1,33 @@
-<section class="about">
-  <h1>About</h1>
-  <p>A short bio goes here.</p>
-</section>
+<div class="about-card" [class.about-card--retro]="isRetro()">
+  <div class="about-card-header">💼 experience</div>
+  <div class="about-card-body">
+    @for (item of experience; track item.role) {
+      <div class="about-exp-item">
+        <p class="about-exp-period">{{ item.period }}</p>
+        <p class="about-exp-role">{{ item.role }}</p>
+        <p class="about-exp-summary">{{ item.summary }}</p>
+      </div>
+    }
+  </div>
+</div>
+
+<div class="about-card" [class.about-card--retro]="isRetro()">
+  <div class="about-card-header">🛠 skills &amp; interests</div>
+  <div class="about-card-body">
+    <div class="about-chips">
+      @for (skill of skills; track skill) {
+        <span class="about-chip">{{ skill }}</span>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="about-card" [class.about-card--retro]="isRetro()">
+  <div class="about-card-header">❝ words to code by</div>
+  <div class="about-card-body">
+    <p class="about-quote">
+      Make it work, make it right, make it fast — in that order, and never skip the middle.
+    </p>
+    <p class="about-quote-source">— a rule i live by</p>
+  </div>
+</div>
