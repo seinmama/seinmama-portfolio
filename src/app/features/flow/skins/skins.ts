@@ -25,10 +25,13 @@ export class Skins {
   protected readonly skins = computed(() => {
     const audienceId = this.theme.audience();
     const shortlist = audienceId ? AUDIENCE_SKINS[audienceId] : null;
-    if (!shortlist || shortlist.length === 0) {
-      return SKINS;
+    const isModern = this.theme.style() === 'modern';
+
+    let list = shortlist && shortlist.length > 0 ? SKINS.filter((skin) => shortlist.includes(skin.id)) : SKINS;
+    if (isModern) {
+      list = list.filter((skin) => skin.id !== 'cyberpunk');
     }
-    return SKINS.filter((skin) => shortlist.includes(skin.id));
+    return list;
   });
 
   protected readonly activeId = computed(() => this.selected() ?? this.skins()[0]?.id ?? null);

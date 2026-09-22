@@ -32,8 +32,9 @@ export class SiteShell {
   protected readonly isRetro = computed(() => this.theme.style() === 'retro');
 
   @HostBinding('class')
-  get themeClass(): string {
-    return this.theme.themeClass();
+  get hostClass(): string {
+    const styleClass = this.isRetro() ? 'is-retro' : 'is-modern';
+    return `${this.theme.themeClass()} ${styleClass}`;
   }
 
   protected readonly navLinks = [

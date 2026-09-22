@@ -1,37 +1,29 @@
-<section class="home-hero">
-  <div class="home-device" aria-hidden="true">
-    <div class="home-device-screen">
-      <span class="home-device-glow"></span>
-      <span class="home-device-mark">Z</span>
-    </div>
-    <span class="home-device-pad"></span>
-  </div>
-
-  <div class="home-intro">
-    <p class="home-eyebrow">hello, I'm</p>
-    <h1 class="home-title">Sein Ma Ma</h1>
-    <p class="home-tagline">
-      I build things for the web — currently browsing in the <strong>{{ theme.skin() ?? 'default' }}</strong> skin.
+@if (audience(); as person) {
+  <div class="home-card">
+    <p class="home-banner">
+      <b>{{ person.icon }} {{ person.name }} view</b>
+      {{ copy()?.banner }}
     </p>
   </div>
-</section>
+}
 
-<section class="home-links">
-  <h2 class="home-section-title">cool links</h2>
-  <div class="home-links-grid">
-    @for (link of links; track link.id) {
-      <a class="home-link" [href]="link.href" target="_blank" rel="noopener">
-        <span class="home-link-icon">{{ link.icon }}</span>
-        <span class="home-link-label">{{ link.label }}</span>
-      </a>
-    }
+<div class="home-card">
+  <div class="home-card-header">👋 welcome.html</div>
+  <div class="home-card-body">
+    <p class="home-welcome">{{ copy()?.welcome ?? "welcome to my corner of the web! have a look around." }}</p>
   </div>
-</section>
+</div>
 
-<section class="home-about">
-  <h2 class="home-section-title">about me</h2>
-  <p class="home-about-text">
-    A short, friendly intro goes here — who you are, what you make, and why this portfolio exists.
-  </p>
-  <a class="home-about-link" routerLink="/site/about">read more →</a>
-</section>
+<div class="home-card">
+  <div class="home-card-header">📖 latest from the blog</div>
+  <div class="home-card-body">
+    @for (entry of teaserEntries; track entry.slug) {
+      <div class="home-entry">
+        <p class="home-entry-meta">{{ entry.date }} · {{ entry.kicker }}</p>
+        <p class="home-entry-title">{{ entry.title }}</p>
+        <p class="home-entry-excerpt">{{ entry.excerpt }}</p>
+      </div>
+    }
+    <button type="button" class="home-more" (click)="goBlog()">read the whole journal »</button>
+  </div>
+</div>

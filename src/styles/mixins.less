@@ -22,7 +22,7 @@
 
 .pressable() {
   transition: transform 0.1s ease;
-
+  
   &:hover {
     transform: translate(-1px, -1px);
   }
@@ -34,12 +34,16 @@
 
 .card() {
   background: var(--surface);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  box-shadow: var(--box-shadow);
+  border-radius: 14px;
+  border: solid 1px var(--border);
+  margin-bottom: 20px;
 }
 
 .card-retro() {
   border-color: var(--text);
   box-shadow: 3px 3px 0 var(--text);
+  border-radius: 0;
 }
 
 .card-header() {

@@ -2,17 +2,20 @@ import { BlogPost } from '../core/models';
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
-    slug: 'building-a-zune-themed-portfolio',
-    title: 'Building a Zune-themed portfolio',
-    date: '2026-01-12',
-    excerpt: 'Why I went with an audience-and-skin picker instead of a static homepage.',
-    tags: ['angular', 'design'],
+    slug: 'shipping-a-design-system-nobody-asked-for',
+    title: 'shipping a design system nobody asked for',
+    date: 'JUL 09',
+    kicker: 'FIELD NOTES',
+    excerpt:
+      'it started as a folder of buttons. a year later half the company depends on it — heres what id do differently.',
+    tags: ['design-systems'],
   },
   {
-    slug: 'ssr-and-view-transitions',
-    title: 'SSR, view transitions, and a funnel that has to feel instant',
-    date: '2026-02-03',
-    excerpt: 'Notes on keeping the pre-site flow client-rendered while prerendering the rest.',
-    tags: ['angular', 'ssr'],
+    slug: 'the-grid-finally-clicked',
+    title: 'the grid finally clicked',
+    date: 'JUN 22',
+    kicker: 'CSS',
+    excerpt: 'after years of flexbox gymnastics, subgrid totally rewired how i think about layout. a lil love letter.',
+    tags: ['css'],
   },
 ];

@@ -1,5 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
-import { ThemeService } from '../../../../core/theme.service';
+import { Component } from '@angular/core';
 
 interface ExperienceItem {
   period: string;
@@ -44,10 +43,6 @@ const SKILLS: readonly string[] = [
   styleUrl: './about.less',
 })
 export class About {
-  private readonly theme = inject(ThemeService);
-
   protected readonly experience = EXPERIENCE;
   protected readonly skills = SKILLS;
-
-  protected readonly isRetro = computed(() => this.theme.style() === 'retro');
 }
