@@ -1,33 +1,41 @@
-<section class="guestbook">
-  <h1>Guestbook</h1>
+<div class="guestbook-card">
+  <div class="guestbook-card-header">📝 sign my guestbook!</div>
+  <div class="guestbook-card-body">
+    <form class="guestbook-form" (submit)="$event.preventDefault(); submit()">
+      <label class="guestbook-field">
+        <span class="guestbook-label">your name</span>
+        <input
+          class="guestbook-input"
+          type="text"
+          placeholder="webmaster_you"
+          [ngModel]="name()"
+          (ngModelChange)="name.set($event)"
+          name="name"
+        />
+      </label>
+      <label class="guestbook-field">
+        <span class="guestbook-label">your message</span>
+        <textarea
+          class="guestbook-input guestbook-textarea"
+          placeholder="say hi! (｡•ᴗ•｡)"
+          [ngModel]="message()"
+          (ngModelChange)="message.set($event)"
+          name="message"
+        ></textarea>
+      </label>
+      <button type="submit" class="guestbook-submit">✎ Sign guestbook</button>
+    </form>
+  </div>
+</div>
 
-  <form class="guestbook__form" (submit)="$event.preventDefault(); submit()">
-    <input
-      class="guestbook__input"
-      type="text"
-      placeholder="Name"
-      [ngModel]="name()"
-      (ngModelChange)="name.set($event)"
-      name="name"
-    />
-    <textarea
-      class="guestbook__input"
-      placeholder="Leave a message"
-      [ngModel]="message()"
-      (ngModelChange)="message.set($event)"
-      name="message"
-    ></textarea>
-    <button type="submit" class="guestbook__submit">Sign</button>
-  </form>
-
-  <ul class="guestbook__list">
-    @for (entry of guestbook.entries(); track entry.id) {
-      <li class="guestbook__entry">
-        <strong>{{ entry.name }}</strong>
-        <p>{{ entry.message }}</p>
-      </li>
-    } @empty {
-      <li class="guestbook__empty">No entries yet — be the first.</li>
-    }
-  </ul>
-</section>
+<ul class="guestbook-list">
+  @for (entry of guestbook.entries(); track entry.id) {
+    <li class="guestbook-entry">
+      <p class="guestbook-entry-name">✦ {{ entry.name }}</p>
+      <p class="guestbook-entry-message">{{ entry.message }}</p>
+      <p class="guestbook-entry-date">signed {{ entry.createdAt | date: 'MM/dd/yy' }}</p>
+    </li>
+  } @empty {
+    <li class="guestbook-entry guestbook-entry--empty">No entries yet — be the first.</li>
+  }
+</ul>

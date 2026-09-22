@@ -1,48 +1,135 @@
-.guestbook h1 {
-  color: var(--accent);
-  margin-top: 0;
+@import '../../../../../styles/mixins.less';
+
+.guestbook-card {
+  .card();
 }
 
-.guestbook__form {
+:host-context(.is-retro) .guestbook-card {
+  .card-retro();
+}
+
+:host-context(.is-retro) .guestbook-card-header {
+  .card-header-retro();
+}
+
+.guestbook-card-header {
+  .card-header();
+}
+
+.guestbook-card-body {
+  .card-body();
+}
+
+.guestbook-form {
   display: grid;
-  gap: 0.5rem;
-  max-width: 420px;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 
-.guestbook__input {
-  padding: 0.5rem 0.75rem;
-  background: var(--surface);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  border-radius: 4px;
+:host-context(.is-retro) .guestbook-form {
+  border-radius: 0;
+  border-color: var(--text);
+}
+
+.guestbook-field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.guestbook-label {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.guestbook-input {
+  padding: 0.6rem 0.8rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
   color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
 }
 
-.guestbook__submit {
+:host-context(.is-retro) .guestbook-input {
+  border-radius: 0;
+  border-color: var(--text);
+}
+
+.guestbook-textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.guestbook-submit {
   justify-self: start;
-  padding: 0.5rem 1.25rem;
-  background: var(--accent);
-  color: var(--accent-contrast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--text);
+  color: var(--bg);
   border: none;
   border-radius: 999px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.85rem;
+  .pressable();
 }
 
-.guestbook__list {
+:host-context(.is-retro) .guestbook-submit {
+  border-radius: 0;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: 2px solid var(--text);
+  box-shadow: 2px 2px 0 var(--text);
+}
+
+.guestbook-list {
   list-style: none;
-  margin: 0;
+  margin: 1rem 0 0;
   padding: 0;
   display: grid;
   gap: 1rem;
 }
 
-.guestbook__entry {
-  padding: 0.75rem 1rem;
-  background: var(--surface);
-  border-radius: 4px;
+.guestbook-entry {
+  .card();
+  padding: 0.9rem 1.1rem;
 }
 
-.guestbook__empty {
+:host-context(.is-retro) .guestbook-entry {
+  .card-retro();
+}
+
+.guestbook-entry-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.guestbook-entry-message {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.guestbook-entry-date {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
   color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+.guestbook-entry--empty {
+  color: var(--text-muted);
+  text-align: center;
 }
