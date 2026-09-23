@@ -1,10 +1,11 @@
-import { Component, HostBinding, computed, inject } from '@angular/core';
+import { Component, HostBinding, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ThemeService } from '../../core/theme.service';
 import { AUDIENCES } from '../../data/audiences.data';
 import { SKINS } from '../../data/skins.data';
 import { QUICK_LINKS } from '../../data/links.data';
 import { Ticker } from '../../shared/ui/ticker/ticker';
+import { AudienceId } from '../../core/models';
 
 const TICKER_ITEMS: readonly string[] = [
   '★ WELCOME TO MY CORNER OF THE WEB ★',
@@ -30,6 +31,30 @@ export class SiteShell {
   protected readonly visitorDigits = ['0', '0', '1', '3', '3', '7'];
 
   protected readonly isRetro = computed(() => this.theme.style() === 'retro');
+
+  protected readonly profileAudience = computed(() => {
+    const id = this.theme.audience();
+    return id ? (AUDIENCES.find((item) => item.id === id) ?? null) : null;
+  });
+
+  protected readonly profileSkin = computed(() => {
+    const id = this.theme.skin();
+    return id ? (SKINS.find((item) => item.id === id) ?? null) : null;
+  });
+
+  private readonly photoLoadErrors = signal<ReadonlySet<AudienceId>>(new Set());
+
+  protected readonly showProfilePhoto = computed(() => {
+    const audience = this.profileAudience();
+    return !!audience?.photoUrl && !this.photoLoadErrors().has(audience.id);
+  });
+
+  protected onPhotoError(id: AudienceId): void {
+    if (this.photoLoadErrors().has(id)) {
+      return;
+    }
+    this.photoLoadErrors.set(new Set([...this.photoLoadErrors(), id]));
+  }
 
   @HostBinding('class')
   get hostClass(): string {

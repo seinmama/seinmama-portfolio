@@ -5,4 +5,5 @@ export interface Audience {
   name: string;
   description: string;
   icon: string;
+  photoUrl?: string;
 }

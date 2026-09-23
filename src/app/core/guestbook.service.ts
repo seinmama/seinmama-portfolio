@@ -4,7 +4,7 @@ import { GuestbookEntry } from './models';
 
 const KEY = 'guestbook';
 
-const SEED_ENTRIES: readonly GuestbookEntry[] = [
+const SEED_ENTRIES: GuestbookEntry[] = [
   {
     id: 'seed-webmaster_tina',
     name: 'webmaster_tina',

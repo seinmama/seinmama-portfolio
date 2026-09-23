@@ -46,8 +46,20 @@
             <div class="site-card-header">me.jpg</div>
           }
           <div class="site-photo-frame">
-            <span class="site-photo-icon">🖼️</span>
-            <span class="site-photo-label">Drop a pic!</span>
+            @if (showProfilePhoto()) {
+              <img
+                class="site-photo-img"
+                [src]="profileAudience()!.photoUrl"
+                [alt]="profileAudience()!.name + ' profile photo'"
+                (error)="onPhotoError(profileAudience()!.id)"
+              />
+            } @else {
+              <span class="site-photo-icon">{{ profileAudience()?.icon ?? '🖼️' }}</span>
+              <span class="site-photo-label">{{ profileAudience()?.description ?? 'Drop a pic!' }}</span>
+            }
+            @if (profileSkin(); as skin) {
+              <span class="site-photo-badge" [title]="skin.name + ' skin'">{{ skin.icon }}</span>
+            }
           </div>
         </div>
 
