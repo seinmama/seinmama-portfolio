@@ -1,6 +1,139 @@
-// Runtime-swappable theme tokens (CSS custom properties), one block per skin.
-// ThemeService toggles the `.theme-*` class on the app root; see core/theme.service.ts.
-// Values mirror the reference prototype (Retro Homepage.dc.html) so skins stay visually accurate.
+// Runtime-swappable theme tokens (CSS custom properties) in two layers:
+//   1. Style (parent theme): `.is-modern` / `.is-retro` set shapes — radius, borders, shadows, layout.
+//   2. Skin: `.theme-*` sets colours and fonts.
+// SiteShell puts both classes on its host, so style tokens resolve against the active skin's colours.
+// Components read these tokens instead of branching on the style with :host-context(.is-retro).
+// Skin values mirror the reference prototype (Retro Homepage.dc.html) so skins stay visually accurate.
+
+// ---------------------------------------------------------------------------
+// Style layer
+// ---------------------------------------------------------------------------
+
+.is-modern {
+  // Cards
+  --card-radius: 14px;
+  --card-border-color: var(--border);
+  --card-shadow: var(--box-shadow);
+  --card-shadow-flat: none; // cards that stay flat in modern (guestbook entries, aside)
+  --card-font: 'Open Sans', sans-serif;
+  --card-header-bg: transparent;
+  --card-header-color: var(--text-muted);
+  --card-header-transform: uppercase;
+  --card-header-border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+
+  // Boxes & form fields
+  --box-radius: 12px;
+  --field-radius: 8px;
+  --field-border-color: var(--border);
+
+  // Buttons & badges
+  --pill-radius: 999px;
+  --raised-shadow: none;
+  --btn-primary-bg: var(--text);
+  --btn-primary-fg: var(--bg);
+  --btn-primary-border: none;
+  --btn-secondary-bg: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  --btn-secondary-fg: var(--text);
+  --btn-secondary-border: 1px solid var(--accent);
+  --badge-bg: var(--surface);
+  --badge-border: 1px solid var(--border);
+  --badge-shadow: var(--box-shadow);
+
+  // Top bar
+  --themebar-bg: transparent;
+  --themebar-border: none;
+  --themebar-padding: 0;
+
+  // Nav
+  --nav-border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  --nav-link-padding: 0.3rem 0.1rem;
+  --nav-link-border-width: 0 0 2px;
+  --nav-link-border-color: transparent;
+  --nav-link-bg: transparent;
+  --nav-link-shadow: none;
+  --nav-link-hover-shift: 0;
+  --nav-link-active-bg: transparent;
+  --nav-link-active-fg: var(--text);
+
+  // Aside: one flat, divided column
+  --aside-gap: 0;
+  --aside-card-bg: transparent;
+  --aside-card-border: none;
+  --aside-card-divider: 1px solid var(--border);
+  --aside-card-padding: 1.25rem 0;
+  --aside-card-margin: 0;
+  --aside-header-padding: 0 0 0.75rem;
+  --aside-header-border: none;
+  --aside-body-padding: 0;
+  --aside-row-padding: 0.75rem 0;
+  --aside-row-divider: 1px solid var(--border);
+  --aside-photo-padding: 0 0 1.25rem;
+}
+
+.is-retro {
+  // Cards
+  --card-radius: 0;
+  --card-border-color: var(--text);
+  --card-shadow: 3px 3px 0 var(--text);
+  --card-shadow-flat: 3px 3px 0 var(--text);
+  --card-font: var(--font-body);
+  --card-header-bg: var(--accent);
+  --card-header-color: var(--accent-contrast);
+  --card-header-transform: none;
+  --card-header-border: 2px solid var(--text);
+
+  // Boxes & form fields
+  --box-radius: 0;
+  --field-radius: 0;
+  --field-border-color: var(--text);
+
+  // Buttons & badges
+  --pill-radius: 0;
+  --raised-shadow: 2px 2px 0 var(--text);
+  --btn-primary-bg: var(--accent);
+  --btn-primary-fg: var(--accent-contrast);
+  --btn-primary-border: 2px solid var(--text);
+  --btn-secondary-bg: var(--accent);
+  --btn-secondary-fg: var(--accent-contrast);
+  --btn-secondary-border: 2px solid var(--text);
+  --badge-bg: var(--accent);
+  --badge-border: 2px solid var(--text);
+  --badge-shadow: 2px 2px 0 var(--text);
+
+  // Top bar
+  --themebar-bg: var(--surface);
+  --themebar-border: 2px solid var(--text);
+  --themebar-padding: 0.5rem 0.75rem;
+
+  // Nav
+  --nav-border: none;
+  --nav-link-padding: 0.6rem 0.75rem;
+  --nav-link-border-width: 1px;
+  --nav-link-border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  --nav-link-bg: var(--surface);
+  --nav-link-shadow: 2px 2px 0 var(--text);
+  --nav-link-hover-shift: -1px;
+  --nav-link-active-bg: var(--accent);
+  --nav-link-active-fg: var(--accent-contrast);
+
+  // Aside: a stack of boxed cards
+  --aside-gap: 1rem;
+  --aside-card-bg: var(--panel);
+  --aside-card-border: 1px solid var(--text);
+  --aside-card-divider: 1px solid var(--text);
+  --aside-card-padding: 0;
+  --aside-card-margin: 20px;
+  --aside-header-padding: 0.6rem 0.9rem;
+  --aside-header-border: 2px solid var(--text);
+  --aside-body-padding: 0.9rem;
+  --aside-row-padding: 0.75rem 0.9rem;
+  --aside-row-divider: 1px dotted color-mix(in srgb, var(--accent) 25%, transparent);
+  --aside-photo-padding: 0.75rem;
+}
+
+// ---------------------------------------------------------------------------
+// Skin layer
+// ---------------------------------------------------------------------------
 
 :root,
 .theme-default {
@@ -11,21 +144,26 @@
   --text: #f4f4f6;
   --text-muted: #9a9aa5;
   --link: #f68b1e;
+  // Form fields are white on light skins; dark skins override this so light text stays readable.
+  --input-bg: #101014;
   --font-body: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-label: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --panel:#fff;
 }
 
 .theme-coffee {
+  --panel:#fff;
   --accent: #a9714b;
   --accent-contrast: #f6efe2;
-  --bg: #e5d8c3;
+  --bg: #f7f2e9;
   --surface: #f6efe2;
   --text: #3b2a1e;
   --text-muted: #6f5a45;
   --link: #8a5a2b;
+  --input-bg: #ffffff;
   --font-body: Georgia, 'Times New Roman', serif;
   --font-label: 'Open Sans', sans-serif;
-  --border:#d3e7ed;;
+  --border:#e6d9c4;
   --box-shadow:0 1px 2px rgba(0,0,0,.04),0 10px 26px -14px rgba(0,0,0,.12);
 }
 
@@ -37,6 +175,8 @@
   --text: #2f4a2c;
   --text-muted: #5d7355;
   --link: #3a7d44;
+  --input-bg: #ffffff;
+  --panel:#fff;
   --font-body: 'Comic Neue', 'Comic Sans MS', cursive;
   --font-label: 'Open Sans', sans-serif;
   --border:#dbe5cd;
@@ -51,9 +191,11 @@
   --text: #eaeaff;
   --text-muted: #8a7fb5;
   --link: #00eaff;
+  --input-bg: #05010d;
   --font-body: 'VT323', 'Courier New', monospace;
   --font-label: 'Press Start 2P', monospace;
   --border:#e3ded1;
+  --panel:#fff;
   --box-shadow: 0 1px 2px rgba(0,0,0,.04),0 10px 26px -14px rgba(0,0,0,.12);
 }
 
@@ -65,6 +207,7 @@
   --text: #141414;
   --text-muted: #565656;
   --link: #0b0bb0;
+  --input-bg: #ffffff;
   --font-body: Georgia, 'Times New Roman', serif;
   --font-label: 'Open Sans', sans-serif;
   --border:#e3ded1;
@@ -72,13 +215,15 @@
 }
 
 .theme-ocean {
+  --panel:#fff;
   --accent: #0f9bc2;
   --accent-contrast: #f2fbfd;
-  --bg: #d5eef3;
+  --bg: #f1f8fa;
   --surface: #f2fbfd;
   --text: #0b3d54;
   --text-muted: #3d6d80;
   --link: #0a7ea4;
+  --input-bg: #ffffff;
   --font-body: 'Comic Neue', 'Comic Sans MS', cursive;
   --font-label: 'Open Sans', sans-serif;
   --border:#d3e7ed;
@@ -86,6 +231,7 @@
 }
 
 .theme-midnight {
+  --panel:#161c3c;
   --accent: #a78bfa;
   --accent-contrast: #141a3a;
   --bg: #0b1026;
@@ -93,6 +239,7 @@
   --text: #dfe4ff;
   --text-muted: #8b93c4;
   --link: #9db4ff;
+  --input-bg: #0b1026;
   --font-body: Georgia, 'Times New Roman', serif;
   --font-label: 'Open Sans', sans-serif;
   --border:#2a3162;

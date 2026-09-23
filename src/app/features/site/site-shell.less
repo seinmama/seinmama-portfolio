@@ -35,13 +35,10 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
-}
-
-:host(.is-retro) .site-themebar {
-  background: var(--surface);
-  border: 2px solid var(--text);
-  padding: 0.5rem 0.75rem;
-  box-shadow: 2px 2px 0 var(--text);
+  background: var(--themebar-bg);
+  border: var(--themebar-border);
+  padding: var(--themebar-padding);
+  box-shadow: var(--raised-shadow);
 }
 
 .site-summary {
@@ -55,20 +52,13 @@
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--accent);
-  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
-  color: var(--text);
+  border-radius: var(--pill-radius);
+  border: var(--btn-secondary-border);
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+  box-shadow: var(--raised-shadow);
   cursor: pointer;
   .pressable();
-}
-
-:host(.is-retro) .site-change {
-  border-radius: 0;
-  background: var(--accent);
-  color: var(--accent-contrast);
-  border: 2px solid var(--text);
-  box-shadow: 2px 2px 0 var(--text);
 }
 
 .site-head {
@@ -98,39 +88,35 @@
   gap: 1.25rem;
   margin-bottom: 1.5rem;
   padding-bottom: 0.6rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
-}
-
-:host(.is-retro) .site-nav {
-  border-bottom: none;
+  border-bottom: var(--nav-border);
 }
 
 .site-nav-link {
   font-family: var(--font-label);
   font-size: 0.75rem;
-  padding: 0.3rem 0.1rem;
+  padding: var(--nav-link-padding);
   color: var(--text-muted);
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  border-style: solid;
+  border-width: var(--nav-link-border-width);
+  border-color: var(--nav-link-border-color);
+  background: var(--nav-link-bg);
+  box-shadow: var(--nav-link-shadow);
+  transition: transform 0.1s ease;
+
+  &:hover {
+    transform: translate(var(--nav-link-hover-shift), var(--nav-link-hover-shift));
+  }
+
+  &:active {
+    transform: translate(0, 0);
+  }
 }
 
 .site-nav-link--active {
-  color: var(--text);
+  color: var(--nav-link-active-fg);
   font-weight: 700;
-  border-bottom-color: var(--text);
-}
-
-:host(.is-retro) .site-nav-link {
-  padding: 0.6rem 0.75rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  background: var(--surface);
-  box-shadow: 2px 2px 0 var(--text);
-  .pressable();
-}
-
-:host(.is-retro) .site-nav-link.site-nav-link--active {
-  background: var(--accent);
-  color: var(--accent-contrast);
+  background: var(--nav-link-active-bg);
   border-color: var(--text);
 }
 
@@ -169,73 +155,40 @@
   min-width: 0;
 }
 
+.site-aside {
+  gap: var(--aside-gap);
+}
+
+// Aside cards: a flat divided column in modern, boxed cards in retro (see --aside-* tokens).
 .site-card {
-  .card();
+  background: var(--aside-card-bg);
+  border: var(--aside-card-border);
+  border-radius: 0;
+  box-shadow: var(--card-shadow-flat);
+  margin-bottom: var(--aside-card-margin);
+  padding: var(--aside-card-padding);
 }
 
-:host(.is-retro) .site-card {
-  .card-retro();
+.site-card + .site-card {
+  border-top: var(--aside-card-divider);
 }
 
-:host(.is-retro) .site-card-header {
-  .card-header-retro();
+.site-card:last-child {
+  padding-bottom: 0;
 }
 
 .site-card-header {
   .card-header();
+  padding: var(--aside-header-padding);
+  border-bottom: var(--aside-header-border);
 }
 
 .site-card-body {
-  .card-body();
-}
-
-:host(.is-modern) .site-aside {
-  gap: 0;
-}
-
-:host(.is-modern) .site-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 0;
-  padding: 1.25rem 0;
-}
-
-:host(.is-modern) .site-card:first-child {
-  padding-top: 0;
-}
-
-:host(.is-modern) .site-card:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-:host(.is-modern) .site-card-header {
-  padding: 0 0 0.75rem;
-  border-bottom: none;
-}
-
-:host(.is-modern) .site-card-body {
-  padding: 0;
-}
-
-:host(.is-modern) .site-link-row {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-:host(.is-modern) .site-link-row:last-child {
-  border-bottom: none;
+  padding: var(--aside-body-padding);
 }
 
 .site-profile-photo {
-  padding: 0.75rem;
-}
-
-:host(.is-modern) .site-profile-photo {
-  padding: 0 0 1.25rem;
+  padding: var(--aside-photo-padding);
 }
 
 .site-photo-frame {
@@ -272,17 +225,10 @@
   justify-content: center;
   font-size: 0.9rem;
   line-height: 1;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  box-shadow: var(--box-shadow);
-}
-
-:host(.is-retro) .site-photo-badge {
-  border-radius: 0;
-  border: 2px solid var(--text);
-  box-shadow: 2px 2px 0 var(--text);
-  background: var(--accent);
+  background: var(--badge-bg);
+  border: var(--badge-border);
+  border-radius: var(--pill-radius);
+  box-shadow: var(--badge-shadow);
 }
 
 .site-photo-icon {
@@ -314,8 +260,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.75rem 0.9rem;
-  border-bottom: 1px dotted color-mix(in srgb, var(--accent) 25%, transparent);
+  padding: var(--aside-row-padding);
+  border-bottom: var(--aside-row-divider);
   color: var(--link);
   font-weight: 700;
   font-size: 0.9rem;

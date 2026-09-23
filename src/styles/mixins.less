@@ -32,18 +32,13 @@
   }
 }
 
+// Card shapes come from the style layer (.is-modern / .is-retro) in themes.less.
 .card() {
-  background: var(--surface);
-  box-shadow: var(--box-shadow);
-  border-radius: 14px;
-  border: solid 1px var(--border);
+  background: var(--panel);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--card-radius);
+  border: solid 1px var(--card-border-color);
   margin-bottom: 20px;
-}
-
-.card-retro() {
-  border-color: var(--text);
-  box-shadow: 3px 3px 0 var(--text);
-  border-radius: 0;
 }
 
 .card-header() {
@@ -51,16 +46,10 @@
   font-family: var(--font-label);
   font-size: 0.7rem;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
-}
-
-.card-header-retro() {
-  background: var(--accent);
-  color: var(--accent-contrast);
-  text-transform: none;
-  border-bottom: 2px solid var(--text);
+  text-transform: var(--card-header-transform);
+  background: var(--card-header-bg);
+  color: var(--card-header-color);
+  border-bottom: var(--card-header-border);
 }
 
 .card-body() {

@@ -25,17 +25,17 @@
       </label>
       <button type="submit" class="guestbook-submit">✎ Sign guestbook</button>
     </form>
+
+    <ul class="guestbook-list">
+      @for (entry of guestbook.entries(); track entry.id) {
+        <li class="guestbook-entry">
+          <p class="guestbook-entry-name">✦ {{ entry.name }}</p>
+          <p class="guestbook-entry-message">{{ entry.message }}</p>
+          <p class="guestbook-entry-date">signed {{ entry.createdAt | date: 'MM/dd/yy' }}</p>
+        </li>
+      } @empty {
+        <li class="guestbook-entry guestbook-entry--empty">No entries yet — be the first.</li>
+      }
+    </ul>
   </div>
 </div>
-
-<ul class="guestbook-list">
-  @for (entry of guestbook.entries(); track entry.id) {
-    <li class="guestbook-entry">
-      <p class="guestbook-entry-name">✦ {{ entry.name }}</p>
-      <p class="guestbook-entry-message">{{ entry.message }}</p>
-      <p class="guestbook-entry-date">signed {{ entry.createdAt | date: 'MM/dd/yy' }}</p>
-    </li>
-  } @empty {
-    <li class="guestbook-entry guestbook-entry--empty">No entries yet — be the first.</li>
-  }
-</ul>
