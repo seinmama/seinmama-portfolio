@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, computed, inject, signal } from '@angular
 import { Router } from '@angular/router';
 import { ThemeService } from '../../../core/theme.service';
 import { SkinId } from '../../../core/models';
-import { Loader } from '../../../shared/loaders/loader';
 
 interface LoadingCopy {
   words: readonly string[];
@@ -37,11 +36,20 @@ const LOADING_COPY: Record<SkinId, LoadingCopy> = {
 };
 
 const DEFAULT_COPY: LoadingCopy = LOADING_COPY.cyberpunk;
+
+// Skins without their own gif in public/loader fall back to the retro one.
+const LOADER_GIFS: Partial<Record<SkinId, string>> = {
+  newspaper: '/loader/loader-newspaper.gif',
+  coffee: '/loader/loader-coffee.gif',
+  ocean: '/loader/loader-ocean.gif',
+  nature: '/loader/loader-nature.gif',
+  cyberpunk: '/loader/loader-cyberpunk.gif',
+};
+const DEFAULT_GIF = '/loader/loader-retro.gif';
 const TOTAL_DURATION_MS = 3000;
 
 @Component({
   selector: 'flow-loading',
-  imports: [Loader],
   templateUrl: './loading.html',
   styleUrl: './loading.less',
 })
@@ -56,6 +64,11 @@ export class Loading implements OnInit, OnDestroy {
   protected readonly copy = computed(() => {
     const skin = this.theme.skin();
     return (skin && LOADING_COPY[skin]) || DEFAULT_COPY;
+  });
+
+  protected readonly gif = computed(() => {
+    const skin = this.theme.skin();
+    return (skin && LOADER_GIFS[skin]) || DEFAULT_GIF;
   });
 
   protected readonly wordIndex = signal(0);
