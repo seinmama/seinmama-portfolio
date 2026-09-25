@@ -50,6 +50,7 @@ export class Skins {
     if (id) {
       this.theme.setSkin(id);
     }
-    this.router.navigate(['/flow/loading']);
+    // Only friends take the bestie quiz; everyone else goes straight to loading.
+    this.router.navigate([this.theme.audience() === 'friend' ? '/flow/quiz' : '/flow/loading']);
   }
 }

@@ -1,12 +1,42 @@
-<section class="work">
-  <h1>Work</h1>
-  <ul class="work__list">
-    @for (item of items; track item.slug) {
-      <li class="work__item">
-        <h2>{{ item.title }}</h2>
-        <p class="work__meta">{{ item.role }} · {{ item.year }}</p>
-        <p>{{ item.summary }}</p>
-      </li>
-    }
-  </ul>
-</section>
+<div class="work-card">
+  <div class="work-card-header">💾 my work</div>
+  <div class="work-card-body">
+    <p class="work-intro">selected projects — drop screenshots on the frames</p>
+
+    <ul class="work-grid">
+      @for (item of items; track item.slug) {
+        <li class="work-tile">
+          <label
+            class="work-frame"
+            [class.work-frame--over]="dragOver() === item.slug"
+            (dragover)="onDragOver($event, item.slug)"
+            (dragleave)="dragOver.set(null)"
+            (drop)="onDrop($event, item.slug)"
+          >
+            @if (previewFor(item); as src) {
+              <img class="work-frame-img" [src]="src" [alt]="item.title + ' screenshot'" />
+            } @else {
+              <svg class="work-frame-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21" />
+              </svg>
+              <span class="work-frame-label">Drop a screenshot</span>
+            }
+            <input
+              class="work-frame-input"
+              type="file"
+              accept="image/*"
+              (change)="onPick($event, item.slug)"
+            />
+          </label>
+
+          <div class="work-tile-body">
+            <h2 class="work-tile-title">{{ item.title }}</h2>
+            <p class="work-tile-meta">{{ item.role }} · {{ item.year }}</p>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

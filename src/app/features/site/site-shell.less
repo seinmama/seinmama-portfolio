@@ -147,6 +147,14 @@
   align-items: start;
 }
 
+.site-main--reader {
+  grid-template-columns: 1fr;
+}
+
+.site-main--reader .site-aside {
+  display: none;
+}
+
 .site-content,
 .site-aside {
   display: flex;
@@ -299,14 +307,6 @@
 @media (max-width: 720px) {
   .site-main {
     grid-template-columns: 1fr;
-  }
-
-  .site-aside {
-    order: -1;
-  }
-
-  .site-photo-frame {
-    aspect-ratio: 16 / 9;
   }
 }
 

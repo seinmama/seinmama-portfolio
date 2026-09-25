@@ -31,12 +31,13 @@ export class GuestbookService {
 
   readonly entries = signal<GuestbookEntry[]>(this.storage.get<GuestbookEntry[]>(KEY) ?? SEED_ENTRIES);
 
-  add(name: string, message: string): void {
+  add(name: string, message: string, badge?: string): void {
     const entry: GuestbookEntry = {
       id: crypto.randomUUID(),
       name,
       message,
       createdAt: new Date().toISOString(),
+      ...(badge ? { badge } : {}),
     };
     const next = [entry, ...this.entries()];
     this.entries.set(next);

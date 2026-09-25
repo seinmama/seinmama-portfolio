@@ -1,5 +1,7 @@
 import { Component, HostBinding, computed, inject, signal } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRouteSnapshot, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { filter, map } from 'rxjs';
 import { ThemeService } from '../../core/theme.service';
 import { AUDIENCES } from '../../data/audiences.data';
 import { SKINS } from '../../data/skins.data';
@@ -31,6 +33,15 @@ export class SiteShell {
   protected readonly visitorDigits = ['0', '0', '1', '3', '3', '7'];
 
   protected readonly isRetro = computed(() => this.theme.style() === 'retro');
+
+  // Pages whose route sets `data: { reader: true }` (e.g. a journal post) get the full width.
+  protected readonly readerMode = toSignal(
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.isReaderRoute()),
+    ),
+    { initialValue: this.isReaderRoute() },
+  );
 
   protected readonly profileAudience = computed(() => {
     const id = this.theme.audience();
@@ -84,6 +95,14 @@ export class SiteShell {
 
     return `🖼️ ${audiencePart} · ${stylePart} · ${skinPart}`;
   });
+
+  private isReaderRoute(): boolean {
+    let route: ActivatedRouteSnapshot | null = this.router.routerState.snapshot.root;
+    while (route?.firstChild) {
+      route = route.firstChild;
+    }
+    return !!route?.data['reader'];
+  }
 
   protected changeSettings(): void {
     this.router.navigate(['/flow/audience']);

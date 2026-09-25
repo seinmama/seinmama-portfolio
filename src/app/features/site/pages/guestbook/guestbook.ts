@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GuestbookService } from '../../../../core/guestbook.service';
+import { QuizService } from '../../../../core/quiz.service';
 
 @Component({
   selector: 'page-guestbook',
@@ -11,6 +12,8 @@ import { GuestbookService } from '../../../../core/guestbook.service';
 })
 export class Guestbook {
   protected readonly guestbook = inject(GuestbookService);
+  protected readonly bestie = inject(QuizService).bestie;
+  protected readonly quizTotal = inject(QuizService).total;
 
   protected readonly name = signal('');
   protected readonly message = signal('');
@@ -21,7 +24,7 @@ export class Guestbook {
     if (!name || !message) {
       return;
     }
-    this.guestbook.add(name, message);
+    this.guestbook.add(name, message, this.bestie() ? '★ BESTIE' : undefined);
     this.name.set('');
     this.message.set('');
   }

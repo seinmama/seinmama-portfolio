@@ -35,7 +35,7 @@
       }
     </nav>
 
-    <div class="site-main">
+    <div class="site-main" [class.site-main--reader]="readerMode()">
       <main class="site-content">
         <router-outlet />
       </main>

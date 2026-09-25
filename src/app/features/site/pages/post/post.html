@@ -1,0 +1,49 @@
+@if (post(); as post) {
+  <article class="post">
+    <a class="post-back" routerLink="/site/blog">« back to the journal</a>
+
+    <header class="post-head">
+      <p class="post-meta">{{ post.date }} · {{ post.kicker }} · {{ post.readMinutes }} min read</p>
+      <h1 class="post-title">{{ post.title }}</h1>
+      <p class="post-lede">{{ post.excerpt }}</p>
+    </header>
+
+    <div class="post-body">
+      @for (block of post.body ?? []; track $index) {
+        @switch (block.kind) {
+          @case ('heading') {
+            <h2 class="post-heading">{{ block.text }}</h2>
+          }
+          @case ('code') {
+            <pre class="post-code">{{ block.text }}</pre>
+          }
+          @default {
+            <p class="post-text">{{ block.text }}</p>
+          }
+        }
+      }
+    </div>
+
+    @if (previous() || next()) {
+      <nav class="post-pager" aria-label="More posts">
+        @if (previous(); as prev) {
+          <a class="post-pager-link" [routerLink]="['/site/blog', prev.slug]">
+            <span class="post-pager-label">« previous</span>
+            <span class="post-pager-title">{{ prev.title }}</span>
+          </a>
+        }
+        @if (next(); as nxt) {
+          <a class="post-pager-link post-pager-link--next" [routerLink]="['/site/blog', nxt.slug]">
+            <span class="post-pager-label">next »</span>
+            <span class="post-pager-title">{{ nxt.title }}</span>
+          </a>
+        }
+      </nav>
+    }
+  </article>
+} @else {
+  <article class="post post--missing">
+    <p class="post-text">that post wandered off. 🌿</p>
+    <a class="post-back" routerLink="/site/blog">« back to the journal</a>
+  </article>
+}

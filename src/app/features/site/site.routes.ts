@@ -23,6 +23,12 @@ export const siteRoutes: Routes = [
     loadComponent: () => import('./pages/blog/blog').then((m) => m.Blog),
   },
   {
+    path: 'blog/:slug',
+    loadComponent: () => import('./pages/post/post').then((m) => m.Post),
+    // SiteShell hides the sidebar for reader-view pages.
+    data: { reader: true },
+  },
+  {
     path: 'gallery',
     loadComponent: () => import('./pages/gallery/gallery').then((m) => m.Gallery),
   },

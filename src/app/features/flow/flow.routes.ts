@@ -1,4 +1,6 @@
-import { Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { Router, Routes } from '@angular/router';
+import { ThemeService } from '../../core/theme.service';
 
 export const flowRoutes: Routes = [
   {
@@ -21,6 +23,11 @@ export const flowRoutes: Routes = [
   {
     path: 'skins',
     loadComponent: () => import('./skins/skins').then((m) => m.Skins),
+  },
+  {
+    path: 'quiz',
+    canActivate: [() => inject(ThemeService).audience() === 'friend' || inject(Router).createUrlTree(['/flow/loading'])],
+    loadComponent: () => import('./quiz/quiz').then((m) => m.Quiz),
   },
   {
     path: 'loading',

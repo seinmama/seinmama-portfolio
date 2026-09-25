@@ -2,7 +2,6 @@
 
 .guestbook-card {
   .card();
-  background-color: #ffffff;
   font-family: var(--card-font);
 }
 
@@ -94,13 +93,39 @@
   border: 1px solid var(--card-border-color);
   border-radius: var(--box-radius);
   box-shadow: var(--card-shadow-flat);
-  background-color: #ffffff;
 }
 
 .guestbook-entry-name {
   margin: 0;
   font-weight: 700;
   font-size: 0.9rem;
+  color: var(--text);
+}
+
+.guestbook-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.5rem;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-radius: var(--pill-radius);
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  vertical-align: middle;
+}
+
+.guestbook-bestie {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px dashed var(--accent);
+  border-radius: var(--box-radius);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
   color: var(--text);
 }
 

@@ -1,10 +1,15 @@
 <section class="gallery">
   <h1>Gallery</h1>
   <div class="gallery__grid">
-    @for (item of items; track item.id) {
+    @for (item of items(); track item.id) {
       <figure class="gallery__figure">
         <ui-image-slot [src]="item.src" [alt]="item.alt" />
-        <figcaption>{{ item.title }}</figcaption>
+        <figcaption>
+          {{ item.title }}
+          @if (item.date) {
+            <span class="gallery__date">· {{ item.date }}</span>
+          }
+        </figcaption>
       </figure>
     }
   </div>

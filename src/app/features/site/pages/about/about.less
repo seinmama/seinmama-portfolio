@@ -44,6 +44,29 @@
   line-height: 1.5;
 }
 
+.about-exp-highlights {
+  margin: 0.6rem 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.5;
+
+  li::marker {
+    color: var(--accent);
+  }
+}
+
+.about-exp-stack {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
 .about-chips {
   display: flex;
   flex-wrap: wrap;
@@ -53,10 +76,13 @@
 .about-chip {
   font-family: var(--font-label);
   font-size: 0.68rem;
-  padding: 0.4rem 0.6rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  background: var(--bg);
-  letter-spacing: 0.02em;
+  font-weight: var(--chip-weight);
+  padding: var(--chip-padding);
+  border: var(--chip-border);
+  border-radius: var(--pill-radius);
+  background: var(--chip-bg);
+  color: var(--chip-color);
+  letter-spacing: 0.04em;
 }
 
 .about-quote {

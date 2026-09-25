@@ -1,6 +1,9 @@
 <div class="guestbook-card">
   <div class="guestbook-card-header">📝 sign my guestbook!</div>
   <div class="guestbook-card-body">
+    @if (bestie(); as b) {
+      <p class="guestbook-bestie">★ CERTIFIED BESTIE ★ you scored {{ b.score }}/{{ quizTotal }} on the quiz</p>
+    }
     <form class="guestbook-form" (submit)="$event.preventDefault(); submit()">
       <label class="guestbook-field">
         <span class="guestbook-label">your name</span>
@@ -29,7 +32,12 @@
     <ul class="guestbook-list">
       @for (entry of guestbook.entries(); track entry.id) {
         <li class="guestbook-entry">
-          <p class="guestbook-entry-name">✦ {{ entry.name }}</p>
+          <p class="guestbook-entry-name">
+            ✦ {{ entry.name }}
+            @if (entry.badge) {
+              <span class="guestbook-badge">{{ entry.badge }}</span>
+            }
+          </p>
           <p class="guestbook-entry-message">{{ entry.message }}</p>
           <p class="guestbook-entry-date">signed {{ entry.createdAt | date: 'MM/dd/yy' }}</p>
         </li>

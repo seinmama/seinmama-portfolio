@@ -1,4 +1,4 @@
-import { Injectable, PLATFORM_ID, inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, WritableSignal, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 const PREFIX = 'zune-portfolio:';
@@ -27,6 +27,18 @@ export class StorageService {
       return;
     }
     localStorage.setItem(PREFIX + key, JSON.stringify(value));
+  }
+
+  /** A signal seeded from storage that writes every `set`/`update` back to it. */
+  persisted<T>(key: string, initial: T): WritableSignal<T> {
+    const state = signal<T>(this.get<T>(key) ?? initial);
+    const setState = state.set.bind(state);
+    state.set = (value: T) => {
+      setState(value);
+      this.set(key, value);
+    };
+    state.update = (fn: (value: T) => T) => state.set(fn(state()));
+    return state;
   }
 
   remove(key: string): void {

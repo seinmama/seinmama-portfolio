@@ -6,9 +6,17 @@
     @for (post of posts; track post.slug) {
       <article class="blog-entry">
         <p class="blog-entry-meta">{{ post.date }} · {{ post.kicker }} · {{ post.readMinutes }} min</p>
-        <h2 class="blog-entry-title">{{ post.title }}</h2>
+        <h2 class="blog-entry-title">
+          @if (post.body) {
+            <a class="blog-entry-link" [routerLink]="['/site/blog', post.slug]">{{ post.title }}</a>
+          } @else {
+            {{ post.title }}
+          }
+        </h2>
         <p class="blog-entry-excerpt">{{ post.excerpt }}</p>
-        <a class="blog-entry-more" href="javascript:void(0)">[ + ] read more »</a>
+        @if (post.body) {
+          <a class="blog-entry-more" [routerLink]="['/site/blog', post.slug]">[ + ] read more »</a>
+        }
       </article>
     }
   </div>
