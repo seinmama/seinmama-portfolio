@@ -1,11 +1,9 @@
 <div class="site">
   <div class="site-shell">
     <div class="site-topbar">
-      <div class="site-themebar" [class.site-themebar--retro]="isRetro()">
+      <div class="site-themebar">
         <span class="site-summary">{{ summaryLine() }}</span>
-        <button type="button" class="site-change" [class.site-change--retro]="isRetro()" (click)="changeSettings()">
-          🎨 change »
-        </button>
+        <button type="button" class="site-change" (click)="changeSettings()">🎨 change »</button>
       </div>
 
       @if (isRetro()) {
@@ -24,53 +22,62 @@
     }
 
     <header class="site-head">
-      <h1 class="site-title">Jordan's Corner of the Web</h1>
+      <h1 class="site-title">Zune's Corner of the Web</h1>
       <p class="site-tag">
-        a lil homepage about front-end dev, coffee &amp; the world wide web ✨<br />
-        est. 1998 · handcoded with love &amp; Notepad
+        hey, I'm Zune — a front-end developer from Myanmar, currently living in Vietnam, usually somewhere between code, coffee &amp; a good sunset ✨<br />
+        est. 1995 · built with curiosity &amp; way too much coffee ☕
       </p>
     </header>
 
     <nav class="site-nav">
       @for (link of navLinks; track link.path) {
-        <a
-          [routerLink]="link.path"
-          routerLinkActive="site-nav-link--active"
-          class="site-nav-link"
-          [class.site-nav-link--retro]="isRetro()"
-        >{{ link.label }}</a>
+        <a [routerLink]="link.path" routerLinkActive="site-nav-link--active" class="site-nav-link">{{ link.label }}</a>
       }
     </nav>
 
-    <div class="site-main">
+    <div class="site-main" [class.site-main--reader]="readerMode()">
       <main class="site-content">
         <router-outlet />
       </main>
 
       <aside class="site-aside">
-        <div class="site-card site-profile-photo" [class.site-card--retro]="isRetro()">
+        <div class="site-card site-profile-photo">
           @if (isRetro()) {
             <div class="site-card-header">me.jpg</div>
           }
           <div class="site-photo-frame">
-            <span class="site-photo-icon">🖼️</span>
-            <span class="site-photo-label">Drop a pic!</span>
+            @if (showProfilePhoto()) {
+              <img
+                class="site-photo-img"
+                [src]="profileAudience()!.photoUrl"
+                [alt]="profileAudience()!.name + ' profile photo'"
+                (error)="onPhotoError(profileAudience()!.id)"
+              />
+            } @else {
+              <span class="site-photo-icon">{{ profileAudience()?.icon ?? '🖼️' }}</span>
+              <span class="site-photo-label">{{ profileAudience()?.description ?? 'Drop a pic!' }}</span>
+            }
+            @if (profileSkin(); as skin) {
+              <span class="site-photo-badge" [title]="skin.name + ' skin'">{{ skin.icon }}</span>
+            }
           </div>
         </div>
 
-        <div class="site-card" [class.site-card--retro]="isRetro()">
+        <div class="site-card">
           <div class="site-card-header">★ about me ★</div>
           <div class="site-card-body">
-            <p class="site-bio-line"><b>name »</b> jordan avery</p>
+            <p class="site-bio-line"><b>name »</b> Sein Ma Ma</p>
+             <p class="site-bio-line"><b>nick name »</b> Zune </p>
             <p class="site-bio-line"><b>role »</b> front-end dev</p>
-            <p class="site-bio-line"><b>from »</b> lisbon, pt</p>
+            <p class="site-bio-line"><b>from »</b> Myanmar </p>
             <p class="site-bio-line"><b>mood »</b> 😎 caffeinated</p>
-            <p class="site-bio-line"><b>♫ now »</b> boards of canada</p>
+            <p class="site-bio-line"><b>♫ now »</b> boards of Vietnam</p>
+            <p class="site-bio-line"><b>♫ usually »</b> coding / learning / wandering 🌿</p>
           </div>
         </div>
 
         @if (isRetro()) {
-          <div class="site-card site-card--retro">
+          <div class="site-card">
             <div class="site-card-header">visitor count</div>
             <div class="site-card-body site-counter">
               @for (digit of visitorDigits; track $index) {
@@ -80,7 +87,7 @@
           </div>
         }
 
-        <div class="site-card" [class.site-card--retro]="isRetro()">
+        <div class="site-card">
           <div class="site-card-header">cool links</div>
           <div class="site-card-body site-links">
             @for (link of links; track link.id) {

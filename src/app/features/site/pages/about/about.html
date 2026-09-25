@@ -1,4 +1,4 @@
-<div class="about-card" [class.about-card--retro]="isRetro()">
+<div class="about-card">
   <div class="about-card-header">💼 experience</div>
   <div class="about-card-body">
     @for (item of experience; track item.role) {
@@ -6,12 +6,22 @@
         <p class="about-exp-period">{{ item.period }}</p>
         <p class="about-exp-role">{{ item.role }}</p>
         <p class="about-exp-summary">{{ item.summary }}</p>
+        @if (item.highlights?.length) {
+          <ul class="about-exp-highlights">
+            @for (point of item.highlights; track point) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+        }
+        @if (item.stack) {
+          <p class="about-exp-stack">{{ item.stack }}</p>
+        }
       </div>
     }
   </div>
 </div>
 
-<div class="about-card" [class.about-card--retro]="isRetro()">
+<div class="about-card">
   <div class="about-card-header">🛠 skills &amp; interests</div>
   <div class="about-card-body">
     <div class="about-chips">
@@ -22,12 +32,10 @@
   </div>
 </div>
 
-<div class="about-card" [class.about-card--retro]="isRetro()">
-  <div class="about-card-header">❝ words to code by</div>
+<div class="about-card">
+  <div class="about-card-header">☕ how i work</div>
   <div class="about-card-body">
-    <p class="about-quote">
-      Make it work, make it right, make it fast — in that order, and never skip the middle.
-    </p>
-    <p class="about-quote-source">— a rule i live by</p>
+    <p class="about-quote">figure out how it works, make it simple, then make it better — one coffee at a time.</p>
+    <p class="about-quote-source">— zune</p>
   </div>
 </div>

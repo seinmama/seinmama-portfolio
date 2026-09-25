@@ -1,48 +1,150 @@
-.guestbook h1 {
-  color: var(--accent);
-  margin-top: 0;
+@import '../../../../../styles/mixins.less';
+
+.guestbook-card {
+  .card();
+  font-family: var(--card-font);
 }
 
-.guestbook__form {
+.guestbook-card-header {
+  .card-header();
+}
+
+.guestbook-card-body {
+  .card-body();
+  padding: 1.1rem;
+}
+
+.guestbook-form {
   display: grid;
-  gap: 0.5rem;
-  max-width: 420px;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  padding: 1.1rem 1rem;
+  border: 1px solid var(--field-border-color);
+  border-radius: var(--box-radius);
 }
 
-.guestbook__input {
-  padding: 0.5rem 0.75rem;
-  background: var(--surface);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  border-radius: 4px;
+.guestbook-field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.guestbook-label {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text);
 }
 
-.guestbook__submit {
-  justify-self: start;
-  padding: 0.5rem 1.25rem;
-  background: var(--accent);
-  color: var(--accent-contrast);
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 600;
+.guestbook-input {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  background: var(--input-bg, #ffffff);
+  border: 1px solid var(--field-border-color);
+  border-radius: var(--field-radius);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+
+  &::placeholder {
+    color: var(--text-muted);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
 }
 
-.guestbook__list {
+.guestbook-textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.guestbook-submit {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  border: var(--btn-primary-border);
+  border-radius: var(--pill-radius);
+  box-shadow: var(--raised-shadow);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  .pressable();
+}
+
+.guestbook-list {
   list-style: none;
-  margin: 0;
+  margin: 1rem 0 0;
   padding: 0;
   display: grid;
   gap: 1rem;
 }
 
-.guestbook__entry {
-  padding: 0.75rem 1rem;
+.guestbook-entry {
+  padding: 0.9rem 1rem;
   background: var(--surface);
-  border-radius: 4px;
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--box-radius);
+  box-shadow: var(--card-shadow-flat);
 }
 
-.guestbook__empty {
+.guestbook-entry-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.guestbook-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.5rem;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-radius: var(--pill-radius);
+  font-family: var(--font-label);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  vertical-align: middle;
+}
+
+.guestbook-bestie {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px dashed var(--accent);
+  border-radius: var(--box-radius);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--text);
+}
+
+.guestbook-entry-message {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.guestbook-entry-date {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
   color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+.guestbook-entry--empty {
+  color: var(--text-muted);
+  text-align: center;
 }

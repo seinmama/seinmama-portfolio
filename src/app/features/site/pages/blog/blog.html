@@ -1,12 +1,23 @@
-<section class="blog">
-  <h1>Blog</h1>
-  <ul class="blog__list">
+<div class="blog-card">
+  <div class="blog-card-header">📖 the journal</div>
+  <div class="blog-card-body">
+    <p class="blog-intro">field notes from the desk</p>
+
     @for (post of posts; track post.slug) {
-      <li class="blog__item">
-        <h2>{{ post.title }}</h2>
-        <p class="blog__meta">{{ post.date }}</p>
-        <p>{{ post.excerpt }}</p>
-      </li>
+      <article class="blog-entry">
+        <p class="blog-entry-meta">{{ post.date }} · {{ post.kicker }} · {{ post.readMinutes }} min</p>
+        <h2 class="blog-entry-title">
+          @if (post.body) {
+            <a class="blog-entry-link" [routerLink]="['/site/blog', post.slug]">{{ post.title }}</a>
+          } @else {
+            {{ post.title }}
+          }
+        </h2>
+        <p class="blog-entry-excerpt">{{ post.excerpt }}</p>
+        @if (post.body) {
+          <a class="blog-entry-more" [routerLink]="['/site/blog', post.slug]">[ + ] read more »</a>
+        }
+      </article>
     }
-  </ul>
-</section>
+  </div>
+</div>

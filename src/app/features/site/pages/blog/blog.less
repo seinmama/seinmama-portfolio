@@ -1,22 +1,77 @@
-.blog h1 {
-  color: var(--accent);
-  margin-top: 0;
+@import '../../../../../styles/mixins.less';
+
+.blog-card {
+  .card();
+  font-family: var(--card-font);
 }
 
-.blog__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 1.5rem;
+.blog-card-header {
+  .card-header();
 }
 
-.blog__item h2 {
-  margin: 0 0 0.25rem;
+.blog-card-body {
+  .card-body();
+  padding: 1.1rem 1.1rem 0.4rem;
 }
 
-.blog__meta {
-  color: var(--text-muted);
-  font-size: 0.875rem;
+.blog-intro {
   margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.blog-entry {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-entry:last-child {
+  border-bottom: none;
+}
+
+.blog-entry-meta {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.blog-entry-title {
+  margin: 0.35rem 0 0.6rem;
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.blog-entry-excerpt {
+  margin: 0 0 0.75rem;
+  max-width: 36rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.blog-entry-link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--link);
+  }
+}
+
+.blog-entry-more {
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--link);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
