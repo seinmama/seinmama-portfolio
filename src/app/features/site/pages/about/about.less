@@ -12,59 +12,297 @@
   .card-body();
 }
 
-.about-exp-item {
-  padding: 0.75rem 0;
-  border-bottom: 1px dotted color-mix(in srgb, var(--accent) 25%, transparent);
+// ---------------------------------------------------------------------------
+// Career roadmap: stat tiles, then a vertical timeline of role cards.
+// ---------------------------------------------------------------------------
+
+@road-rail: 72px;
+
+.road-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
 }
 
-.about-exp-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.road-stat {
+  padding: 0.9rem 1rem;
+  background: var(--panel);
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--box-radius);
+  box-shadow: var(--card-shadow-flat);
 }
 
-.about-exp-period {
+.road-stat-value {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.road-stat-label {
+  margin: 0.45rem 0 0;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.road {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.75rem;
+
+  // The rail the year markers sit on.
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.8rem;
+    bottom: 0.8rem;
+    left: calc(@road-rail / 2 - 1px);
+    width: 2px;
+    background: var(--text);
+    opacity: 0.8;
+  }
+}
+
+.road-stop {
+  position: relative;
+  display: grid;
+  grid-template-columns: @road-rail minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.road-year {
+  position: relative;
+  justify-self: center;
+  margin-top: 0.9rem;
+  padding: 0.3rem 0.7rem;
+  background: var(--panel);
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--pill-radius);
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.is-current .road-year {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.road-card {
+  padding: 1.1rem 1.25rem;
+  background: var(--panel);
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--box-radius);
+  box-shadow: var(--card-shadow-flat);
+}
+
+.is-current .road-card {
+  box-shadow: var(--card-shadow);
+}
+
+.road-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
   margin: 0;
   font-family: var(--font-label);
   font-size: 0.68rem;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
-  letter-spacing: 0.03em;
 }
 
-.about-exp-role {
-  margin: 0.2rem 0;
+.road-pill {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--pill-radius);
+  color: var(--text);
   font-weight: 700;
-  font-size: 0.95rem;
+
+  &--now {
+    border-color: color-mix(in srgb, #22c55e 55%, transparent);
+    background: color-mix(in srgb, #22c55e 14%, var(--panel));
+    color: #15803d;
+    text-transform: uppercase;
+  }
+}
+
+.road-role {
+  margin: 0.7rem 0 0.2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.25;
   color: var(--text);
 }
 
-.about-exp-summary {
+.road-company {
   margin: 0;
+  font-family: var(--font-label);
   font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.5;
+  font-weight: 700;
+  color: var(--text);
 }
 
-.about-exp-highlights {
+.road-summary {
   margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.road-highlights {
+  margin: 0.8rem 0 0;
   padding-left: 1.1rem;
   display: grid;
-  gap: 0.3rem;
-  font-size: 0.85rem;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
   color: var(--text);
-  line-height: 1.5;
 
   li::marker {
     color: var(--accent);
   }
 }
 
-.about-exp-stack {
-  margin: 0.6rem 0 0;
+.road-more {
+  margin-top: 0.7rem;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--accent);
+  }
+}
+
+.road-stack {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.9rem 0 0;
+  padding: 0.9rem 0 0;
+  border-top: 1px solid var(--card-border-color);
+}
+
+.road-tech {
+  padding: 0.3rem 0.65rem;
+  background: var(--chip-bg);
+  border: var(--chip-border);
+  border-radius: var(--pill-radius);
   font-family: var(--font-label);
   font-size: 0.68rem;
-  letter-spacing: 0.03em;
+  color: var(--chip-color);
+}
+
+// Closing stop: the rail ends at a rocket and an invitation.
+.road-next {
+  align-items: center;
+}
+
+.road-rocket {
+  position: relative;
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: var(--panel);
+  border: 1px solid var(--card-border-color);
+  border-radius: 50%;
+  box-shadow: var(--card-shadow-flat);
+  font-size: 1.1rem;
+}
+
+.road-next-text {
+  margin: 0;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  line-height: 1.6;
+
+  b {
+    color: var(--text);
+  }
+
+}
+
+.road-talk {
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--link);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.road-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+
+.road-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  background: var(--panel);
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--pill-radius);
+  box-shadow: var(--card-shadow-flat);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+@media (max-width: 560px) {
+  @road-rail-sm: 52px;
+
+  .road::before {
+    left: calc(@road-rail-sm / 2 - 1px);
+  }
+
+  .road-stop {
+    grid-template-columns: @road-rail-sm minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+
+  .road-year {
+    padding: 0.25rem 0.45rem;
+    font-size: 0.65rem;
+  }
+
+  .road-card {
+    padding: 0.9rem 1rem;
+  }
 }
 
 .about-chips {
