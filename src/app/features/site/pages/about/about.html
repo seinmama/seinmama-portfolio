@@ -1,23 +1,103 @@
 <div class="about-card">
-  <div class="about-card-header">💼 experience</div>
+  <div class="about-card-header">💼 career roadmap</div>
   <div class="about-card-body">
-    @for (item of experience; track item.role) {
-      <div class="about-exp-item">
-        <p class="about-exp-period">{{ item.period }}</p>
-        <p class="about-exp-role">{{ item.role }}</p>
-        <p class="about-exp-summary">{{ item.summary }}</p>
-        @if (item.highlights?.length) {
-          <ul class="about-exp-highlights">
-            @for (point of item.highlights; track point) {
-              <li>{{ point }}</li>
+    <div class="road-stats">
+      @for (stat of stats; track stat.label) {
+        <div class="road-stat">
+          <p class="road-stat-value">{{ stat.value }}</p>
+          <p class="road-stat-label">{{ stat.label }}</p>
+        </div>
+      }
+    </div>
+
+    <ol class="road">
+      @for (item of roadmap; track item.company) {
+        @let open = expanded().has(item.company);
+        <li class="road-stop" [class.is-current]="item.current">
+          <span class="road-year">{{ item.year }}</span>
+
+          <article class="road-card">
+            <p class="road-meta">
+              <span>{{ item.period }}</span>
+              <span class="road-pill">{{ item.duration }}</span>
+              @if (item.current) {
+                <span class="road-pill road-pill--now">● now</span>
+              }
+            </p>
+            <h3 class="road-role">{{ item.role }}</h3>
+            <p class="road-company">&#64; {{ item.company }}</p>
+            <p class="road-summary">{{ item.summary }}</p>
+
+            <ul class="road-highlights" [id]="'road-' + $index">
+              @for (point of item.highlights; track point; let i = $index) {
+                @if (open || i < visibleHighlights) {
+                  <li>{{ point }}</li>
+                }
+              }
+            </ul>
+
+            @if (item.highlights.length > visibleHighlights) {
+              <button
+                type="button"
+                class="road-more"
+                [attr.aria-expanded]="open"
+                [attr.aria-controls]="'road-' + $index"
+                (click)="toggle(item.company)"
+              >
+                @if (open) {
+                  [ − ] show less
+                } @else {
+                  [ + ] {{ item.highlights.length - visibleHighlights }} more achievements
+                }
+              </button>
             }
-          </ul>
-        }
-        @if (item.stack) {
-          <p class="about-exp-stack">{{ item.stack }}</p>
-        }
-      </div>
-    }
+
+            <ul class="road-stack" aria-label="Tech stack">
+              @for (tech of item.stack; track tech) {
+                <li class="road-tech">{{ tech }}</li>
+              }
+            </ul>
+          </article>
+        </li>
+      }
+      <li class="road-stop road-next">
+        <span class="road-rocket" aria-hidden="true">🚀</span>
+        <div class="road-next-body">
+          <p class="road-next-text">
+            next stop: <b>your team?</b> —
+            <button
+              type="button"
+              class="road-talk"
+              aria-controls="road-contact"
+              [attr.aria-expanded]="contactOpen()"
+              (click)="contactOpen.set(!contactOpen())"
+            >
+              let's talk
+            </button>
+          </p>
+
+          @if (contactOpen()) {
+            <div class="road-contact" id="road-contact">
+              @if (contact.email) {
+                <a class="road-contact-link" [href]="'mailto:' + contact.email">
+                  <span aria-hidden="true">✉️</span> {{ contact.email }}
+                </a>
+              }
+              @if (contact.whatsapp) {
+                <a class="road-contact-link" [href]="'https://wa.me/' + contact.whatsapp" target="_blank" rel="noopener">
+                  <span aria-hidden="true">💬</span> WhatsApp +{{ contact.whatsapp }}
+                </a>
+              }
+              @if (linkedin) {
+                <a class="road-contact-link" [href]="linkedin" target="_blank" rel="noopener">
+                  <span aria-hidden="true">🔗</span> LinkedIn
+                </a>
+              }
+            </div>
+          }
+        </div>
+      </li>
+    </ol>
   </div>
 </div>
 

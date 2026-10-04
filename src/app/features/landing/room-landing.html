@@ -1,0 +1,53 @@
+<div class="landing">
+  @if (open()) {
+    <app-room-scene [mood]="mood()" />
+  }
+
+  <div class="hall" [class.is-open]="open()">
+    <div class="wall wall--top"></div>
+    <div class="wall wall--left"></div>
+    <div class="wall wall--right"></div>
+    <div class="rail rail--left"></div>
+    <div class="rail rail--right"></div>
+    <div class="base base--left"></div>
+    <div class="base base--right"></div>
+    <div class="floor"></div>
+
+    <div class="brand">
+      <div class="brand-name">{{ hall.name }}</div>
+      <div class="brand-role">{{ hall.role }}</div>
+    </div>
+
+    <app-monstera class="monstera" />
+    <app-snake-plant class="snake-plant" />
+    <app-bouquet class="bouquet" [stems]="7" />
+
+    @if (!open()) {
+      <div class="leak leak--glow"></div>
+      <div class="leak leak--line"></div>
+      <div class="hint">{{ hall.hint }}</div>
+    }
+
+    <div class="doorway">
+      <button type="button" class="door" aria-label="Open the door" (click)="openDoor()">
+        <span class="door-panel door-panel--top"></span>
+        <span class="door-panel door-panel--bottom"></span>
+        <span class="sign">{{ hall.sign }}</span>
+        <span class="plate"></span>
+        <span class="knob"></span>
+        <span class="tag">
+          <span class="tag-string"></span>
+          <span class="tag-card">{{ hall.tag }}</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="trim"></div>
+    <app-ivy-garland class="garland" />
+  </div>
+
+  @if (open()) {
+    <div class="flood"></div>
+    <app-welcome-card (replay)="replay()" />
+  }
+</div>

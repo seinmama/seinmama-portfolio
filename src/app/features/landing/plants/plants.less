@@ -1,0 +1,37 @@
+// Shared mixins for the hallway plants.
+
+// A small five-petal flower head; set the petal colour with `--petal`.
+.blossom-head() {
+  display: block;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #f2c14e 0 20%, var(--petal) 23% 62%, rgba(0, 0, 0, 0) 64%),
+    conic-gradient(
+      from 0deg,
+      var(--petal) 0 12%,
+      rgba(0, 0, 0, 0) 12% 20%,
+      var(--petal) 20% 32%,
+      rgba(0, 0, 0, 0) 32% 40%,
+      var(--petal) 40% 52%,
+      rgba(0, 0, 0, 0) 52% 60%,
+      var(--petal) 60% 72%,
+      rgba(0, 0, 0, 0) 72% 80%,
+      var(--petal) 80% 92%,
+      rgba(0, 0, 0, 0) 92%
+    );
+  -webkit-mask: radial-gradient(circle, #000 68%, transparent 70%);
+  mask: radial-gradient(circle, #000 68%, transparent 70%);
+}
+
+// Plants sway from their base; static for reduced motion.
+.sway() {
+  @keyframes sway {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+    }
+  }
+}

@@ -4,7 +4,11 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'flow',
+    loadComponent: () => import('./features/landing/room-landing').then((m) => m.RoomLanding),
+  },
+  {
+    path: 'studio',
+    loadComponent: () => import('./features/studio/studio').then((m) => m.Studio),
   },
   {
     path: 'flow',
