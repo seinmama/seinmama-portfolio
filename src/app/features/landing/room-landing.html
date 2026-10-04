@@ -1,8 +1,6 @@
 <div class="landing">
   @if (open()) {
-    <div class="room">
-      <page-studio />
-    </div>
+    <app-room-scene [mood]="mood()" />
   }
 
   <div class="hall" [class.is-open]="open()">
@@ -50,5 +48,6 @@
 
   @if (open()) {
     <div class="flood"></div>
+    <app-welcome-card (replay)="replay()" />
   }
 </div>

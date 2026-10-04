@@ -1,0 +1,23 @@
+<section class="card" aria-labelledby="welcome-title">
+  <div class="kicker"><i></i>{{ card.kicker }}</div>
+  <h1 id="welcome-title">{{ card.title }} <em>{{ card.titleAccent }}</em></h1>
+  <p>{{ card.body }}</p>
+  <div class="prompt">{{ card.prompt }}</div>
+
+  <div class="choices">
+    <a class="choice choice--studio" routerLink="/studio">
+      <span class="choice-icon" aria-hidden="true">{{ card.studio.icon }}</span>
+      <span class="choice-title">{{ card.studio.title }}</span>
+      <span class="choice-text">{{ card.studio.text }}</span>
+    </a>
+    <a class="choice choice--classic" [routerLink]="classicUrl">
+      <span class="choice-icon" aria-hidden="true">{{ card.classic.icon }}</span>
+      <span class="choice-title">{{ card.classic.title }}</span>
+      <span class="choice-text">{{ card.classic.text }}</span>
+    </a>
+  </div>
+
+  <div class="replay-row">
+    <button type="button" class="replay" (click)="replay.emit()">{{ card.replay }}</button>
+  </div>
+</section>

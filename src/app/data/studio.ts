@@ -9,7 +9,22 @@ export const LANDING_HALL = {
   hint: 'click the door · or press enter',
 };
 
-/** Text painted onto the 3D monitor's screen texture. */
+/** Where "Classic site" links go, from the landing and the studio. */
+export const CLASSIC_SITE_URL = '/site/home';
+
+/** The welcome card that fades up once the room has booted. */
+export const LANDING_CARD = {
+  kicker: 'welcome in',
+  title: "Hi, I'm Zune.",
+  titleAccent: 'Pull up a chair.',
+  body: 'Senior front-end engineer. I build calm, fast interfaces in Angular, mostly from this desk.',
+  prompt: 'how do you want to look around?',
+  studio: { icon: '🎮', title: '3D studio', text: 'Walk around my desk and click things to explore.' },
+  classic: { icon: '📄', title: 'Classic site', text: 'A normal website, retro or modern. Read at your own pace.' },
+  replay: '↺ Replay',
+};
+
+/** Text on the monitor, both in the landing room and the 3D studio. */
 export const STUDIO_SCREEN = {
   url: 'zune.dev',
   greeting: "hi, i'm zune.",
