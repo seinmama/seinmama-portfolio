@@ -1,17 +1,14 @@
 import { Routes } from '@angular/router';
 
-const loadStudio = () => import('./features/studio/studio').then((m) => m.Studio);
-
 export const routes: Routes = [
   {
-    // TODO(room-landing): the door landing replaces this; its "3D studio" tile links to /studio.
     path: '',
     pathMatch: 'full',
-    loadComponent: loadStudio,
+    loadComponent: () => import('./features/landing/room-landing').then((m) => m.RoomLanding),
   },
   {
     path: 'studio',
-    loadComponent: loadStudio,
+    loadComponent: () => import('./features/studio/studio').then((m) => m.Studio),
   },
   {
     path: 'flow',
